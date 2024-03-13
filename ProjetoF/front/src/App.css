@@ -1,0 +1,41 @@
+h1{
+    text-align: center; 
+    background-color: rgb(59, 80, 241); 
+}
+form{
+    width: 500px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+form{
+    margin-bottom: 5px;
+}
+
+form input[type='button']{
+    margin-right: 10px;
+}
+.tabel{
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 0;
+}
+table{
+    width: 100%;
+
+    border-collapse: collapse;
+    text-align: center;
+    
+}
+td,th {   
+    border: 1px solid;
+    padding: 5px;
+    border-color: black;
+}
+h2{
+    text-align: center;
+    padding: 0;
+    border: 1px solid;
+    margin-top: 0;  
+
+}
