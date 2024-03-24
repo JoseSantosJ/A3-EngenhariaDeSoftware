@@ -24,12 +24,12 @@ public class GastosModelo {
     private long codigo;
     //data da compra
 
-    @Column(columnDefinition = "DECIMAL(10,2)")
+    //@Column(columnDefinition = "DECIMAL(10,2)")
     private double valor;
 
     private String motivo;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    //@JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     //tipo
