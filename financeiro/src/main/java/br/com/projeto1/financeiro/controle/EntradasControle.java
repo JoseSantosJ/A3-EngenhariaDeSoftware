@@ -44,9 +44,9 @@ public class EntradasControle {
     }
 
 
-    @GetMapping("/somadasentradas")
+   /*  @GetMapping("/somadasentradas")
     public Double somar(){
         return es.somadasentradas();
-    }
+    }*/
     
 }
