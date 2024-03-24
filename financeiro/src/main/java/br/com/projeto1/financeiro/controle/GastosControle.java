@@ -75,7 +75,7 @@ public class GastosControle {
 
 
 
-    @GetMapping("/somadosgasto")
+   /*  @GetMapping("/somadosgasto")
     public Double somar(){
         return gs.somaDosGastos();
     }
@@ -98,6 +98,6 @@ public class GastosControle {
 
 
 
-
+    */
     
 }

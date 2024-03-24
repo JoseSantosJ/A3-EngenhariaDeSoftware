@@ -29,9 +29,9 @@ public class GastosServico {
         return gr.findByOrderByData();//gr.findAll();
     }
 
-    public double somaDosGastos(){
-        return gr.somaDosGastos();
-    }
+    //public double somaDosGastos(){
+        //return gr.somaDosGastos();
+    //}
 
     //metodo para cadastrar ou alterar gastos
     public ResponseEntity<?> cadastrargasto (GastosModelo gm, String acao){
@@ -86,14 +86,14 @@ public class GastosServico {
 
 
     // Método para listar gastos por mês e ano
-    public Iterable<GastosModelo> listargastosPorMesEAno(int mes, int ano) {
+    /*public Iterable<GastosModelo> listargastosPorMesEAno(int mes, int ano) {
         return gr.findByMesEAno(mes, ano);
     }
 
     // Método para obter a soma dos gastos por mês e ano
     public Double somaDosGastosPorMesEAno(int mes, int ano) {
         return gr.somaDosGastosPorMesEAno(mes, ano);
-    }
+    }*/
 
 
 

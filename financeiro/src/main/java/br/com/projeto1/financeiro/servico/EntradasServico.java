@@ -23,9 +23,9 @@ public class EntradasServico {
         return er.findAll();
     }
 
-    public double somadasentradas(){
+  /*   public double somadasentradas(){
         return er.somadasentradas();
-    }
+    }*/
 
     //metodo para cadastrar ou alterar entradas
     public ResponseEntity<?> cadastrarentrada (EntradasModelo gm, String acao){

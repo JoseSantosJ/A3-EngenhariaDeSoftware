@@ -19,13 +19,13 @@ public interface GastosRepositorio extends CrudRepository<GastosModelo, Long>{
     @Transactional
     void deleteByInfo(long info);
 
-    @Query("SELECT SUM(g.valor) FROM GastosModelo g")
+    /*@Query("SELECT SUM(g.valor) FROM GastosModelo g")
     Double somaDosGastos();
 
     @Query("SELECT g FROM GastosModelo g WHERE MONTH(g.data) = :mes AND YEAR(g.data) = :ano")
     Iterable<GastosModelo> findByMesEAno(@Param("mes") int mes, @Param("ano") int ano);
 
     @Query("SELECT SUM(g.valor) FROM GastosModelo g WHERE MONTH(g.data) = :mes AND YEAR(g.data) = :ano")
-    Double somaDosGastosPorMesEAno(@Param("mes") int mes, @Param("ano") int ano);
+    Double somaDosGastosPorMesEAno(@Param("mes") int mes, @Param("ano") int ano);*/
 
 }
