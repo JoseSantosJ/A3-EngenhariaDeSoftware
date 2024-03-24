@@ -41,5 +41,7 @@ public class GastosModelo {
     //chave estrangeira codigo fonte
     private long fonte;
 
+    private int teste;
+
     
 }
