@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Info")
 @Getter
 @Setter
 public class InfoModelo {
@@ -22,16 +21,16 @@ public class InfoModelo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigoinf;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    //@JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate datac;
 
-    @Column(columnDefinition = "DECIMAL(10,2)")
+   // @Column(columnDefinition = "DECIMAL(10,2)")
     private double valor;
 
     private String motivo;
 
     //valor da parcela
-    @Column(columnDefinition = "DECIMAL(10,2)")
+    //@Column(columnDefinition = "DECIMAL(10,2)")
     private double valordp;
 
     //numero de parcelas

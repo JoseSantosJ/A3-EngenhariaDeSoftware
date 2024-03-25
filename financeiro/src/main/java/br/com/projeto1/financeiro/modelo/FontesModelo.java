@@ -9,12 +9,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "fonte")
 @Getter
 @Setter
 public class FontesModelo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigofonte;
 
     private String nomefonte;

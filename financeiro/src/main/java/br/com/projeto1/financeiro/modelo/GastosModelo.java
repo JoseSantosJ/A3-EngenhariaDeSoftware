@@ -15,12 +15,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Gastos")
 @Getter
 @Setter
 public class GastosModelo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
     //data da compra
 
