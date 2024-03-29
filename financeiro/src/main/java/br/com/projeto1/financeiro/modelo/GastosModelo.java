@@ -15,19 +15,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "Gastos")
 @Getter
 @Setter
 public class GastosModelo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
     //data da compra
 
-    //@Column(columnDefinition = "DECIMAL(10,2)")
+    @Column(columnDefinition = "DECIMAL(10,2)")
     private double valor;
 
     private String motivo;
 
-    //@JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     //tipo
@@ -38,8 +40,6 @@ public class GastosModelo {
 
     //chave estrangeira codigo fonte
     private long fonte;
-
-    private int teste;
 
     
 }
