@@ -44,7 +44,7 @@ function Gastos(){
   useEffect(() => {
 
     //requisita dados do link
-    fetch("http://localhost:8080/listargastos")
+    fetch("https://projeto1backup.onrender.com/listargastos")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -61,7 +61,7 @@ function Gastos(){
   useEffect(() => {
 
     //requisita dados do link
-    fetch("http://localhost:8080/listarfontes")
+    fetch("https://projeto1backup.onrender.com/listarfontes")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -106,7 +106,7 @@ function Gastos(){
     if(btnparcelamento == false){
       if (objGasto.codigofonte !== 0){
         objGasto.fonte = objGasto.codigofonte;
-        fetch('http://localhost:8080/cadastrargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+        fetch('https://projeto1backup.onrender.com/cadastrargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
           method: 'post',
           body:JSON.stringify(objGasto),
           headers:{
@@ -129,7 +129,7 @@ function Gastos(){
 
         })
       }else{
-        fetch('http://localhost:8080/cadastrargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+        fetch('https://projeto1backup.onrender.com/cadastrargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
           method: 'post',
           body:JSON.stringify(objGasto),
           headers:{
@@ -155,7 +155,7 @@ function Gastos(){
       }
 
     }else{
-      fetch('http://localhost:8080/cadastrargastoparcelado',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+      fetch('https://projeto1backup.onrender.com/cadastrargastoparcelado',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
         method: 'post',
         body:JSON.stringify(objGasto),
         headers:{
@@ -182,7 +182,7 @@ function Gastos(){
 
   //Remover Gasto
   const remover = () => {
-    fetch('http://localhost:8080/removergasto/'+objGasto.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://projeto1backup.onrender.com/removergasto/'+objGasto.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'delete',
       headers:{
         'Content-type':'application/json',
@@ -217,7 +217,7 @@ function Gastos(){
 
   //alterar Gasto
   const alterar = () => {
-    fetch('http://localhost:8080/alterargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://projeto1backup.onrender.com/alterargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'put',
       body:JSON.stringify(objGasto),
       headers:{

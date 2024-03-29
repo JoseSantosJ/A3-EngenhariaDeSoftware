@@ -4,7 +4,7 @@ function SumEntradas() {
   const [sumEntrada, setSumEntrada] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/somadasentradas")
+    fetch("https://projeto1backup.onrender.com/somadasentradas")
       .then(retorno => retorno.json())
       .then(retorno_convertido => setSumEntrada(retorno_convertido));
   }, []);

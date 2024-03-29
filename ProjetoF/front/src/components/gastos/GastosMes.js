@@ -47,14 +47,14 @@ function GastosMes() {
 
   const buscarDadosTabela = () => {
     if (anoSelecionado && mesSelecionado) {
-      fetch('http://localhost:8080/listargastos/'+anoSelecionado+'/'+mesSelecionado)
+      fetch('https://projeto1backup.onrender.com/listargastos/'+anoSelecionado+'/'+mesSelecionado)
         .then(retorno => retorno.json())
         .then(retorno_convertido => {
           setDadosTabela(retorno_convertido);
         })
         .catch(erro => console.error('Erro ao buscar dados:', erro));
 
-      fetch('http://localhost:8080/somadosgasto/'+anoSelecionado+'/'+mesSelecionado)
+      fetch('https://projeto1backup.onrender.com/somadosgasto/'+anoSelecionado+'/'+mesSelecionado)
         .then(retorno => retorno.json())
         .then(retorno_convertido => {
           setSomaGastos(retorno_convertido);
@@ -106,7 +106,7 @@ function GastosMes() {
   useEffect(() => {
 
     //requisita dados do link
-    fetch("http://localhost:8080/listargastos")
+    fetch("https://projeto1backup.onrender.com/listargastos")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -121,7 +121,7 @@ function GastosMes() {
   //obtendo os dados digitados
 
     const remover = () => {
-      fetch('http://localhost:8080/removergasto/'+objGasto.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+      fetch('https://projeto1backup.onrender.com/removergasto/'+objGasto.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
         method: 'delete',
         headers:{
           'Content-type':'application/json',
@@ -157,7 +157,7 @@ function GastosMes() {
           //alterar Gasto
   //alterar Gasto
   const alterar = () => {
-    fetch('http://localhost:8080/alterargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://projeto1backup.onrender.com/alterargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'put',
       body:JSON.stringify(objGasto),
       headers:{
