@@ -256,6 +256,8 @@ function Gastos(){
     })
   }
 
+  
+
   //limpar formulário
   const limparFormulario = () =>{
     setObjGasto(gasto);
