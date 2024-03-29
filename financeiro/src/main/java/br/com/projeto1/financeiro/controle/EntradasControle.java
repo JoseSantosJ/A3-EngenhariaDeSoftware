@@ -16,7 +16,7 @@ import br.com.projeto1.financeiro.modelo.RespostaModelo;
 import br.com.projeto1.financeiro.servico.EntradasServico;
 
 @RestController
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("https://fronta3.onrender.com/")
 public class EntradasControle {
     @Autowired
     private EntradasServico es;

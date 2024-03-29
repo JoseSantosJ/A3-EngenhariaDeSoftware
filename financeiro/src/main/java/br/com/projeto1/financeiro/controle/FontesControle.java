@@ -12,7 +12,7 @@ import br.com.projeto1.financeiro.modelo.FontesModelo;
 import br.com.projeto1.financeiro.servico.FontesServico;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "https://fronta3.onrender.com/")
 public class FontesControle {
     @Autowired
     FontesServico fs;
