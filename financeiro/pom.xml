@@ -39,9 +39,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.4.1208-jdbc42-atlassian-hosted</version>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		</dependency>
 		<dependency>
