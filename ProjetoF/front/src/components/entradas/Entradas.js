@@ -35,7 +35,7 @@ function Entradas(){
   useEffect(() => {
 
     //useEffect requisita dados do link
-    fetch("https://projeto1backup.onrender.com/somadasentradas")
+    fetch("https://a3-engenhariadesoftware.onrender.com/somadasentradas")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -51,7 +51,7 @@ function Entradas(){
   useEffect(() => {
 
     //requisita dados do link
-    fetch("https://projeto1backup.onrender.com/listarentrada")
+    fetch("https://a3-engenhariadesoftware.onrender.com/listarentrada")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -83,7 +83,7 @@ const aoDigitar = (e) => {
  
   //cadastrar Entrada
   const cadastrar = () => {
-    fetch('https://projeto1backup.onrender.com/cadastrarentrada',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/cadastrarentrada',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'post',
       body:JSON.stringify(objEntrada),
       headers:{
@@ -109,7 +109,7 @@ const aoDigitar = (e) => {
 
   //Remover entrada
   const remover = () => {
-    fetch('https://projeto1backup.onrender.com/removerentrada/'+objEntrada.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/removerentrada/'+objEntrada.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'delete',
       headers:{
         'Content-type':'application/json',
@@ -144,7 +144,7 @@ const aoDigitar = (e) => {
 
   //alterar Entrada
   const alterar = () => {
-    fetch('https://projeto1backup.onrender.com/alterarentrada',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/alterarentrada',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'put',
       body:JSON.stringify(objEntrada),
       headers:{
