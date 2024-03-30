@@ -21,7 +21,7 @@ import br.com.projeto1.financeiro.servico.compra.GastosServico;
 import br.com.projeto1.financeiro.servico.compra.ParcelamentoServico;
 
 @RestController
-@CrossOrigin(origins = "https://fronta3.onrender.com/")
+@CrossOrigin(origins = "*")
 public class GastosControle {
 
     @Autowired
