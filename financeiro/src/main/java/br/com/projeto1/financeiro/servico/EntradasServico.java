@@ -21,7 +21,7 @@ public class EntradasServico {
 
     //metodo para listar todos as entradas
     public Iterable<EntradasModelo> listarentrada(){
-        return er.findAll();
+        return er.findByOrderByData();
     }
 
     // Método para listar gastos por mês e ano
