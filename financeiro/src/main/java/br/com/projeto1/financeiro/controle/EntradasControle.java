@@ -42,11 +42,21 @@ public class EntradasControle {
     public Iterable<EntradasModelo> listar(){
         return es.listarentrada();
     }
+    @GetMapping("/listarentradas/{ano}/{mes}")
+    public Iterable<EntradasModelo> listarPorMesEAnoe(@PathVariable int ano, @PathVariable int mes) {
+        return es.listarEntradasPorMesEAno(mes, ano);
+    }
 
 
     @GetMapping("/somadasentradas")
     public Double somar(){
         return es.somadasentradas();
+    }
+
+    // Endpoint para obter a soma dos gastos por mês e ano
+    @GetMapping("/somadasentradas/{ano}/{mes}")
+    public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
+        return es.somaDasEntradasPorMesEAno(mes, ano);
     }
     
 }

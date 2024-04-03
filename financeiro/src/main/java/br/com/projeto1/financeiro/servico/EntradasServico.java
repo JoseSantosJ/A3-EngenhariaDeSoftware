@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.projeto1.financeiro.modelo.EntradasModelo;
+import br.com.projeto1.financeiro.modelo.GastosModelo;
 import br.com.projeto1.financeiro.modelo.RespostaModelo;
 import br.com.projeto1.financeiro.repositorio.EntradasRepositorio;
 @Service
@@ -23,8 +24,18 @@ public class EntradasServico {
         return er.findAll();
     }
 
+    // Método para listar gastos por mês e ano
+    public Iterable<EntradasModelo> listarEntradasPorMesEAno(int mes, int ano) {
+        return er.findByMesEAno(mes, ano);
+    }
+
     public double somadasentradas(){
         return er.somadasentradas();
+    }
+
+    // Método para obter a soma dos gastos por mês e ano
+    public Double somaDasEntradasPorMesEAno(int mes, int ano) {
+        return er.somaDasEntradasPorMesEAno(mes, ano);
     }
 
     //metodo para cadastrar ou alterar entradas
