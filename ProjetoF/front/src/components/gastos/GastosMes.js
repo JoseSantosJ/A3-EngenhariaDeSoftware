@@ -67,7 +67,7 @@ function GastosMes() {
         .then(retorno_convertido => {
           setTotal(retorno_convertido);
         })
-        .catch(erro => console.error('Erro ao buscar soma dos entradas:', erro));
+        .catch(erro => console.error('Erro ao buscar total:', erro));
     } else {
       // Trate o caso em que o usuário não selecionou ano ou mês
       console.error('Ano e mês devem ser selecionados.');
