@@ -62,7 +62,7 @@ function EntradasMes() {
         })
         .catch(erro => console.error('Erro ao buscar soma dos entradas:', erro));
 
-        fetch('http://localhost:8080/totalMensal/'+anoSelecionado+'/'+mesSelecionado)
+        fetch('https://a3-engenhariadesoftware.onrender.com/totalMensal/'+anoSelecionado+'/'+mesSelecionado)
         .then(retorno => retorno.json())
         .then(retorno_convertido => {
           setTotal(retorno_convertido);
