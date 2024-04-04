@@ -36,6 +36,9 @@ public class GeralServico {
             saidas = 0;
         }
         double totalMensal = entradas - saidas;
+
+        totalMensal = Math.round(totalMensal * 100.0) / 100.0;
+
         return totalMensal;
     }
     

@@ -13,6 +13,7 @@ function EntradasMes() {
   const [mesSelecionado, setMesSelecionado] = useState('');
   const [dadosTabela, setDadosTabela] = useState([]);
   const [somaentradas, setSomaentradas] = useState(null);
+  const [somaTotal, setTotal] = useState(null);
   const[btnCadastrar, setBtnCadastrar] = useState(false);
   const[entradas, setentradas] = useState([]);
 
@@ -58,6 +59,13 @@ function EntradasMes() {
         .then(retorno => retorno.json())
         .then(retorno_convertido => {
           setSomaentradas(retorno_convertido);
+        })
+        .catch(erro => console.error('Erro ao buscar soma dos entradas:', erro));
+
+        fetch('http://localhost:8080/totalMensal/'+anoSelecionado+'/'+mesSelecionado)
+        .then(retorno => retorno.json())
+        .then(retorno_convertido => {
+          setTotal(retorno_convertido);
         })
         .catch(erro => console.error('Erro ao buscar soma dos entradas:', erro));
     } else {
@@ -230,6 +238,9 @@ function EntradasMes() {
       <Tabela vetor={dadosTabela} selecionar={selecionarProduto} />
       {somaentradas !== null && (
         <h2>O entrada total de {mesSelecionado}/{anoSelecionado} foi: R$ {somaentradas}</h2>
+      )}
+      {somaTotal !== null && (
+        <h2>O total do mes {mesSelecionado}/{anoSelecionado} foi: R$ {somaTotal.toFixed(2)}</h2>
       )}
     </div>
   );
