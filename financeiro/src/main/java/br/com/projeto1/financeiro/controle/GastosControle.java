@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.projeto1.financeiro.modelo.FontesModelo;
 import br.com.projeto1.financeiro.modelo.GastosModelo;
 import br.com.projeto1.financeiro.modelo.InfoModelo;
 import br.com.projeto1.financeiro.modelo.RespostaModelo;
@@ -58,9 +59,9 @@ public class GastosControle {
     }
 
     //metodo post é para cadastrar
-    @PostMapping("/cadastrargastocredito")
-    public ResponseEntity<?> cadastrargastocredito(@RequestBody InfoModelo im){
-        return cs.cadastrargastocredito(im, "cadastrargastocredito");
+    @PostMapping("/cadastrargastocredito/{fonte}")
+    public ResponseEntity<?> cadastrargastocredito(@RequestBody GastosModelo gastosModelo,@PathVariable Long fonte){
+        return cs.cadastrargastocredito(gastosModelo,fonte, "cadastrargastocredito");
     }
     
     @GetMapping("/listargastos")

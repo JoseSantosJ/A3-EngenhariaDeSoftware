@@ -34,76 +34,46 @@ public class CreditoServico {
 
     
    //metodo para cadastrar ou alterar gastos no credito
-    public ResponseEntity<?> cadastrargastocredito (InfoModelo im, String acao){
+    public ResponseEntity<?> cadastrargastocredito (GastosModelo gastosModelo,Long fonte, String acao){
        
-            if(im.getDatac() == null){
+            if(gastosModelo.getData() == null){
                 rm.setMensagem("a data  da compra é obrigatorio!");
                 return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
-            }else if(im.getMotivo().equals("")){
+            }else if(gastosModelo.getMotivo().equals("")){
                 rm.setMensagem("o motivo é obrigatório!");
                 return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
-            } else if(im.getValor() == 0){
+            } else if(gastosModelo.getValor() == 0){
                 rm.setMensagem("o valor é obrigatorio!");
                 return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
             }else{
-                
+                InfoModelo infoModelo = new InfoModelo();
                 
                 if(acao.equals("cadastrargastocredito")){
-                    im.setNdp(1);
-                    im.setValordp(im.getValor());
-                    im.setTipo('i');
-                    ir.save(im);
-                    fm = fr.findById(im.getFonte()).orElse(null);
-                    GastosModelo gm = new GastosModelo();
-                    LocalDate datapagamento = im.getDatac();
-                    if(im.getDatac().getDayOfMonth() >= fm.getDialimite()){
+                    infoModelo.setDatac(gastosModelo.getData());
+                    infoModelo.setValor(gastosModelo.getValor());
+                    infoModelo.setMotivo(gastosModelo.getMotivo());
+                    infoModelo.setValordp(gastosModelo.getValor());
+                    infoModelo.setNdp(1);
+                    infoModelo.setTipo('i');
+                    infoModelo.setFonte(fonte);
+                    ir.save(infoModelo);
+                    LocalDate datapagamento = gastosModelo.getData();
+                    fm = fr.findById(fonte).orElse(null);
+                    
+                    if(gastosModelo.getData().getDayOfMonth() >= fm.getDialimite()){
                         
-                        gm.setData(datapagamento = datapagamento.plusMonths(2).withDayOfMonth(fm.getDiadopagamento()));
+                        gastosModelo.setData(gastosModelo.getData().plusMonths(2).withDayOfMonth(fm.getDiadopagamento()));
                     }else {
-                        gm.setData(datapagamento = datapagamento.plusMonths(1).withDayOfMonth(fm.getDiadopagamento()));
+                        gastosModelo.setData(gastosModelo.getData().plusMonths(1).withDayOfMonth(fm.getDiadopagamento()));
                     }
                     
-                    gm.setInfo(im.getCodigoinf());
-                    gm.setMotivo(im.getMotivo());
-                    gm.setValor(im.getValor()) ;
-                    gm.setTipo('c');
-                    gm.setFonte(im.getFonte());
-                    gr.save(gm);
-
-
-
-
-
-
-                    
-                    return new ResponseEntity<InfoModelo>(ir.save(im),HttpStatus.CREATED);
+                    gastosModelo.setInfo(infoModelo.getCodigoinf());
+                    gastosModelo.setTipo('c');
+                    gastosModelo.setFonte(fm.getCodigofonte());
+                   
+                    return new ResponseEntity<GastosModelo>(gr.save(gastosModelo),HttpStatus.CREATED);
                 }else{
-
-                    im.setNdp(1);
-                    im.setValordp(im.getValor());
-                    im.setTipo('i');
-                    ir.save(im);
-                    fm = fr.findById(im.getFonte()).orElse(null);
-                    GastosModelo gm = new GastosModelo();
-                    LocalDate datapagamento = im.getDatac();
-                    if(im.getDatac().getDayOfMonth() >= fm.getDialimite()){
-                        
-                        gm.setData(datapagamento = datapagamento.plusMonths(2).withDayOfMonth(fm.getDiadopagamento()));
-                    }else {
-                        gm.setData(datapagamento = datapagamento.plusMonths(1).withDayOfMonth(fm.getDiadopagamento()));
-                    }
-                    
-                    gm.setInfo(im.getCodigoinf());
-                    gm.setMotivo(im.getMotivo());
-                    gm.setValor(im.getValor()) ;
-                    gm.setTipo('c');
-                    gm.setFonte(im.getFonte()); 
-                    gr.save(gm);
-
-
-
-                    im.setTipo('c');
-                    return new ResponseEntity<InfoModelo>(ir.save(im),HttpStatus.OK);
+                    return new ResponseEntity<GastosModelo>(gr.save(gastosModelo),HttpStatus.OK);
                 }
             }
         
