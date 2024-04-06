@@ -73,7 +73,7 @@ public class CreditoServico {
                    
                     return new ResponseEntity<GastosModelo>(gr.save(gastosModelo),HttpStatus.CREATED);
                 }else{
-                    return new ResponseEntity<GastosModelo>(gr.save(gastosModelo),HttpStatus.OK);
+                    return new ResponseEntity<InfoModelo>(ir.save(infoModelo),HttpStatus.OK);
                 }
             }
         

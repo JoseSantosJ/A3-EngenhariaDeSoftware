@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.projeto1.financeiro.modelo.GastosModelo;
+import br.com.projeto1.financeiro.modelo.InfoModelo;
 import br.com.projeto1.financeiro.modelo.RespostaModelo;
 import br.com.projeto1.financeiro.repositorio.GastosRepositorio;
 import br.com.projeto1.financeiro.repositorio.InfoRepositorio;
@@ -23,6 +24,9 @@ public class GastosServico {
 
     @Autowired
     private RespostaModelo rm;
+
+    @Autowired
+    private CreditoServico creditoServico;
 
     //metodo para listar todos os gastos
     public Iterable<GastosModelo> listargastos(){
@@ -50,7 +54,7 @@ public class GastosServico {
                     gm.setTipo('a');
                     return new ResponseEntity<GastosModelo>(gr.save(gm),HttpStatus.CREATED);
                 }else{
-                    gm.setTipo('a');
+    
                     return new ResponseEntity<GastosModelo>(gr.save(gm),HttpStatus.OK);
                 }
             }
@@ -70,6 +74,12 @@ public class GastosServico {
 
                 //deletar todos os registro com o mesmo codigoinfo
                 gr.deleteByInfo(gm.getInfo());
+            }else if (gm.getTipo() == 'c') {
+                //deletar da tabela info
+                ir.deleteById(gm.getInfo());
+
+                //deletar todos os registro com o mesmo codigoinfo
+                gr.deleteById(codigo);
             }else{
                 gr.deleteById(codigo);
             }
