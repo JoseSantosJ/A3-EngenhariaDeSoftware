@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.repositorio;
+package br.com.projeto1.financeiro.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

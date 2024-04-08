@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto1.financeiro.model.EntradasModelo;
 import br.com.projeto1.financeiro.model.RespostaModelo;
-import br.com.projeto1.financeiro.servico.EntradasServico;
+import br.com.projeto1.financeiro.service.EntradasServico;
 
 @RestController
 @CrossOrigin("*")

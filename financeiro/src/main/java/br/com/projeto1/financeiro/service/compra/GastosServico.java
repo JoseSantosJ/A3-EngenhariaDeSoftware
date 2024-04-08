@@ -1,17 +1,17 @@
 //essa classe determina serviços como cadastrar, alterar,remover, e retorno sobre o serviço prestado
 
-package br.com.projeto1.financeiro.servico.compra;
+package br.com.projeto1.financeiro.service.compra;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.projeto1.financeiro.Repository.GastosRepositorio;
+import br.com.projeto1.financeiro.Repository.InfoRepositorio;
 import br.com.projeto1.financeiro.model.GastosModelo;
 import br.com.projeto1.financeiro.model.InfoModelo;
 import br.com.projeto1.financeiro.model.RespostaModelo;
-import br.com.projeto1.financeiro.repositorio.GastosRepositorio;
-import br.com.projeto1.financeiro.repositorio.InfoRepositorio;
 
 @Service
 public class GastosServico {

@@ -17,9 +17,9 @@ import br.com.projeto1.financeiro.model.FontesModelo;
 import br.com.projeto1.financeiro.model.GastosModelo;
 import br.com.projeto1.financeiro.model.InfoModelo;
 import br.com.projeto1.financeiro.model.RespostaModelo;
-import br.com.projeto1.financeiro.servico.compra.CreditoServico;
-import br.com.projeto1.financeiro.servico.compra.GastosServico;
-import br.com.projeto1.financeiro.servico.compra.ParcelamentoServico;
+import br.com.projeto1.financeiro.service.compra.CreditoServico;
+import br.com.projeto1.financeiro.service.compra.GastosServico;
+import br.com.projeto1.financeiro.service.compra.ParcelamentoServico;
 
 @RestController
 @CrossOrigin(origins = "*")
