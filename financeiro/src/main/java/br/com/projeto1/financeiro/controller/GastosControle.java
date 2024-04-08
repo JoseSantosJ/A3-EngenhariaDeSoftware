@@ -1,6 +1,6 @@
 //controle esta controlando as rotas(endereço)
 
-package br.com.projeto1.financeiro.controle;
+package br.com.projeto1.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.modelo.FontesModelo;
-import br.com.projeto1.financeiro.modelo.GastosModelo;
-import br.com.projeto1.financeiro.modelo.InfoModelo;
-import br.com.projeto1.financeiro.modelo.RespostaModelo;
+import br.com.projeto1.financeiro.model.FontesModelo;
+import br.com.projeto1.financeiro.model.GastosModelo;
+import br.com.projeto1.financeiro.model.InfoModelo;
+import br.com.projeto1.financeiro.model.RespostaModelo;
 import br.com.projeto1.financeiro.servico.compra.CreditoServico;
 import br.com.projeto1.financeiro.servico.compra.GastosServico;
 import br.com.projeto1.financeiro.servico.compra.ParcelamentoServico;
@@ -69,6 +69,16 @@ public class GastosControle {
         return gs.listargastos();
     }
 
+    // Endpoint para listar gastos por mês e ano
+    @GetMapping("/listargastos/{ano}/{mes}")
+    public Iterable<GastosModelo> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
+        return gs.listargastosPorMesEAno(mes, ano);
+    }
+    @GetMapping("/gastosPorFonte/{fonte}")
+    public Iterable<GastosModelo> listarPorFonte(@PathVariable Long fonte){
+        return gs.listarGastosPorFonte(fonte);
+    }
+
     @GetMapping("")
     public String rota(){
         return "API do projeto funcionando!";
@@ -80,15 +90,7 @@ public class GastosControle {
     public Double somar(){
         return gs.somaDosGastos();
     }
-
-
-
-
-    // Endpoint para listar gastos por mês e ano
-    @GetMapping("/listargastos/{ano}/{mes}")
-    public Iterable<GastosModelo> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
-        return gs.listargastosPorMesEAno(mes, ano);
-    }
+    
 
     // Endpoint para obter a soma dos gastos por mês e ano
     @GetMapping("/somadosgasto/{ano}/{mes}")

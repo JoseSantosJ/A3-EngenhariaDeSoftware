@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.modelo.GastosModelo;
-import br.com.projeto1.financeiro.modelo.InfoModelo;
-import br.com.projeto1.financeiro.modelo.RespostaModelo;
+import br.com.projeto1.financeiro.model.GastosModelo;
+import br.com.projeto1.financeiro.model.InfoModelo;
+import br.com.projeto1.financeiro.model.RespostaModelo;
 import br.com.projeto1.financeiro.repositorio.GastosRepositorio;
 import br.com.projeto1.financeiro.repositorio.InfoRepositorio;
 
@@ -28,14 +28,24 @@ public class GastosServico {
     @Autowired
     private CreditoServico creditoServico;
 
+
+    
+
     //metodo para listar todos os gastos
     public Iterable<GastosModelo> listargastos(){
         return gr.findByOrderByData();//gr.findAll();
     }
 
-    public double somaDosGastos(){
-        return gr.somaDosGastos();
+    public Iterable<GastosModelo> listarGastosPorFonte(Long fonte){
+        return gr.findByFonte(fonte);
     }
+
+
+    // Método para listar gastos por mês e ano
+    public Iterable<GastosModelo> listargastosPorMesEAno(int mes, int ano) {
+        return gr.findByMesEAno(mes, ano);
+    }
+
 
     //metodo para cadastrar ou alterar gastos
     public ResponseEntity<?> cadastrargasto (GastosModelo gm, String acao){
@@ -95,10 +105,14 @@ public class GastosServico {
     }
 
 
-    // Método para listar gastos por mês e ano
-    public Iterable<GastosModelo> listargastosPorMesEAno(int mes, int ano) {
-        return gr.findByMesEAno(mes, ano);
+    
+
+
+
+    public double somaDosGastos(){
+        return gr.somaDosGastos();
     }
+
 
     // Método para obter a soma dos gastos por mês e ano
     public Double somaDosGastosPorMesEAno(int mes, int ano) {

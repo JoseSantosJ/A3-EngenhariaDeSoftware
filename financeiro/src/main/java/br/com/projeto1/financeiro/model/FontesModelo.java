@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.modelo;
+package br.com.projeto1.financeiro.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

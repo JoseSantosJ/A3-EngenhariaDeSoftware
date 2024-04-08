@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.modelo.EntradasModelo;
-import br.com.projeto1.financeiro.modelo.RespostaModelo;
+import br.com.projeto1.financeiro.model.EntradasModelo;
+import br.com.projeto1.financeiro.model.RespostaModelo;
 import br.com.projeto1.financeiro.repositorio.EntradasRepositorio;
 @Service
 public class EntradasServico {

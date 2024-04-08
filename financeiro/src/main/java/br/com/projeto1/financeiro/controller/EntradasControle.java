@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.controle;
+package br.com.projeto1.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.modelo.EntradasModelo;
-import br.com.projeto1.financeiro.modelo.RespostaModelo;
+import br.com.projeto1.financeiro.model.EntradasModelo;
+import br.com.projeto1.financeiro.model.RespostaModelo;
 import br.com.projeto1.financeiro.servico.EntradasServico;
 
 @RestController

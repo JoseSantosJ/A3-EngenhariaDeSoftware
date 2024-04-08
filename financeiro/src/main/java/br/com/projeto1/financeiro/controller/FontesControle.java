@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.controle;
+package br.com.projeto1.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.modelo.FontesModelo;
+import br.com.projeto1.financeiro.model.FontesModelo;
 import br.com.projeto1.financeiro.servico.FontesServico;
 
 @RestController

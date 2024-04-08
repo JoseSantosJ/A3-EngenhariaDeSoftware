@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import br.com.projeto1.financeiro.modelo.GastosModelo;
+import br.com.projeto1.financeiro.model.GastosModelo;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -15,6 +15,8 @@ public interface GastosRepositorio extends CrudRepository<GastosModelo, Long>{
 
 
     Iterable<GastosModelo>  findByOrderByData(); 
+
+    Iterable<GastosModelo>  findByFonte(long fonte);
 
     @Transactional
     void deleteByInfo(long info);

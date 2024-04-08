@@ -7,10 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.modelo.FontesModelo;
-import br.com.projeto1.financeiro.modelo.GastosModelo;
-import br.com.projeto1.financeiro.modelo.InfoModelo;
-import br.com.projeto1.financeiro.modelo.RespostaModelo;
+import br.com.projeto1.financeiro.model.FontesModelo;
+import br.com.projeto1.financeiro.model.GastosModelo;
+import br.com.projeto1.financeiro.model.InfoModelo;
+import br.com.projeto1.financeiro.model.RespostaModelo;
 import br.com.projeto1.financeiro.repositorio.FontesRepositorio;
 import br.com.projeto1.financeiro.repositorio.GastosRepositorio;
 import br.com.projeto1.financeiro.repositorio.InfoRepositorio;
