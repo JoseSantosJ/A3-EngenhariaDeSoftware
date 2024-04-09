@@ -286,8 +286,9 @@ function Gastos(){
             <h1>Gastos</h1>
             <Formulario tparcelamento={tparcelamento} tcompra={tcompra} parcelamento={btnparcelamento} botao ={btnCadastrar} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj ={objGasto} cancelar={limparFormulario} remover={remover} alterar={alterar}  Fontes ={Fontes} fonteSelecionada={fonteSelecionada} setFonteSelecionada={setFonteSelecionada} aoSelecionarFonte={aoSelecionarFonte}> </Formulario>
             <Tabela vetor={gastos} selecionar={selecionarProduto}/>
-            
-            <h2> Total  Gastos: R$ {SumGastos()}</h2>
+            {SumGastos() !== null && (
+              <h2> Total  Gastos: R$ {SumGastos()}</h2>
+            )}
         </div>
     )
 }
