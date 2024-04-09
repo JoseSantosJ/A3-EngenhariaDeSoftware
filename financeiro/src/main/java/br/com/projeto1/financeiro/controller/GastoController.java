@@ -61,7 +61,7 @@ public class GastoController {
     }
 
     // Endpoint para listar gastos por mês e ano
-    @GetMapping("/listargastos/{ano}/{mes}")
+    @GetMapping("/{ano}/{mes}")
     public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gastoService.listargastosPorMesEAno(mes, ano);
     }
