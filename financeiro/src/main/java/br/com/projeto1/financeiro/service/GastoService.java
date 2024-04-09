@@ -21,10 +21,10 @@ import br.com.projeto1.financeiro.model.Resposta;
 public class GastoService {
     
     @Autowired
-    private GastoRepository gr;
+    private GastoRepository gastoRepository;
 
     @Autowired
-    private InfoRepository ir;
+    private InfoRepository infoRepository;
 
     @Autowired
     private Resposta rm;
@@ -33,24 +33,24 @@ public class GastoService {
     Fonte fm;
 
    // @Autowired
-    private FonteRepository fr;
+    private FonteRepository fonteRepository;
 
 
     /*metodos para listar */
 
     //metodo para listar todos os gastos
     public Iterable<Gasto> listargastos(){
-        return gr.findByOrderByData();//gr.findAll();
+        return gastoRepository.findByOrderByData();//gastoRepository.findAll();
     }
 
     public Iterable<Gasto> listarGastosPorFonte(Long fonte){
-        return gr.findByFonte(fonte);
+        return gastoRepository.findByFonte(fonte);
     }
 
 
     // Método para listar gastos por mês e ano
     public Iterable<Gasto> listargastosPorMesEAno(int mes, int ano) {
-        return gr.findByMesEAno(mes, ano);
+        return gastoRepository.findByMesEAno(mes, ano);
     }
 
     //_____________________________________________________________________________________________________________________
@@ -72,10 +72,10 @@ public class GastoService {
             }else{
                 if(acao.equals("cadastrargasto")){
                     gm.setTipo('a');
-                    return new ResponseEntity<Gasto>(gr.save(gm),HttpStatus.CREATED);
+                    return new ResponseEntity<Gasto>(gastoRepository.save(gm),HttpStatus.CREATED);
                 }else{
     
-                    return new ResponseEntity<Gasto>(gr.save(gm),HttpStatus.OK);
+                    return new ResponseEntity<Gasto>(gastoRepository.save(gm),HttpStatus.OK);
                 }
             }
         
@@ -105,8 +105,8 @@ public class GastoService {
                 infoModelo.setNdp(1);
                 infoModelo.setTipo('i');
                 infoModelo.setFonte(fonte);
-                ir.save(infoModelo);
-                fm = fr.findById(fonte).orElse(null);
+                infoRepository.save(infoModelo);
+                fm = fonteRepository.findById(fonte).orElse(null);
                 
                 if(gastosModelo.getData().getDayOfMonth() >= fm.getDialimite()){
                     
@@ -119,9 +119,9 @@ public class GastoService {
                 gastosModelo.setTipo('c');
                 gastosModelo.setFonte(fm.getCodigofonte());
                
-                return new ResponseEntity<Gasto>(gr.save(gastosModelo),HttpStatus.CREATED);
+                return new ResponseEntity<Gasto>(gastoRepository.save(gastosModelo),HttpStatus.CREATED);
             }else{
-                return new ResponseEntity<Info>(ir.save(infoModelo),HttpStatus.OK);
+                return new ResponseEntity<Info>(infoRepository.save(infoModelo),HttpStatus.OK);
             }
         }
 
@@ -164,7 +164,7 @@ public class GastoService {
                 String motivoo = im.getMotivo();
                 LocalDate dataParcela = im.getDatac();
                 Info infoModelo = im;
-                ir.save(infoModelo);
+                infoRepository.save(infoModelo);
 
                 for (int i = im.getNdp(); i > 0; i--) {
                     p++;
@@ -178,12 +178,12 @@ public class GastoService {
                     novoGasto.setTipo('p');
                     novoGasto.setInfo(im.getCodigoinf());
 
-                    gr.save(novoGasto);
+                    gastoRepository.save(novoGasto);
                                 
                 }
                 im.setTipo('i');
                 rm.setMensagem("ops algo deu errado");
-                return new ResponseEntity<Info>(ir.save(im), HttpStatus.CREATED);
+                return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
                 
             } else {
                 if(im.getValor() == 0) {
@@ -196,7 +196,7 @@ public class GastoService {
                 String motivoo = im.getMotivo();
                 LocalDate dataParcela = im.getDatac();
                 Info infoModelo = im;
-                ir.save(infoModelo);
+                infoRepository.save(infoModelo);
 
                 for (int i = im.getNdp(); i > 0; i--) {
                     p++;
@@ -210,12 +210,12 @@ public class GastoService {
                     novoGasto.setTipo('p');
                     novoGasto.setInfo(im.getCodigoinf());
 
-                    gr.save(novoGasto);
+                    gastoRepository.save(novoGasto);
                                 
                     }
                     im.setTipo('i');
                     rm.setMensagem("ops algo deu errado");
-                    return new ResponseEntity<Info>(ir.save(im), HttpStatus.CREATED);
+                    return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
                 }
             }
         
@@ -263,7 +263,7 @@ public class GastoService {
                 String motivoo = im.getMotivo();
                 LocalDate dataParcela = im.getDatac();
                 Info infoModelo = im;
-                ir.save(infoModelo);
+                infoRepository.save(infoModelo);
 
                 for (int i = im.getNdp(); i > 0; i--) {
                     p++;
@@ -277,12 +277,12 @@ public class GastoService {
                     novoGasto.setTipo('p');
                     novoGasto.setInfo(im.getCodigoinf());
 
-                    gr.save(novoGasto);
+                    gastoRepository.save(novoGasto);
                                 
                 }
                 im.setTipo('i');
                 rm.setMensagem("ops algo deu errado");
-                return new ResponseEntity<Info>(ir.save(im), HttpStatus.CREATED);
+                return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
                 
             } else {
                 if(im.getValor() == 0) {
@@ -295,7 +295,7 @@ public class GastoService {
                 String motivoo = im.getMotivo();
                 LocalDate dataParcela = im.getDatac();
                 Info infoModelo = im;
-                ir.save(infoModelo);
+                infoRepository.save(infoModelo);
 
                 for (int i = im.getNdp(); i > 0; i--) {
                     p++;
@@ -309,12 +309,12 @@ public class GastoService {
                     novoGasto.setTipo('p');
                     novoGasto.setInfo(im.getCodigoinf());
 
-                    gr.save(novoGasto);
+                    gastoRepository.save(novoGasto);
                                 
                     }
                     im.setTipo('i');
                     rm.setMensagem("ops algo deu errado");
-                    return new ResponseEntity<Info>(ir.save(im), HttpStatus.CREATED);
+                    return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
                 }
             }
         
@@ -328,24 +328,24 @@ public class GastoService {
 
     //metodo para remover gastos
     public ResponseEntity<Resposta> removergasto(long codigo){
-        Gasto gm = gr.findById(codigo).orElse(null);
+        Gasto gm = gastoRepository.findById(codigo).orElse(null);
 
         if (gm != null ) {
             //caso seja do tipo parcelado
             if (gm.getTipo() == 'p') {
                 //deletar da tabela info
-                ir.deleteById(gm.getInfo());
+                infoRepository.deleteById(gm.getInfo());
 
                 //deletar todos os registro com o mesmo codigoinfo
-                gr.deleteByInfo(gm.getInfo());
+                gastoRepository.deleteByInfo(gm.getInfo());
             }else if (gm.getTipo() == 'c') {
                 //deletar da tabela info
-                ir.deleteById(gm.getInfo());
+                infoRepository.deleteById(gm.getInfo());
 
                 //deletar todos os registro com o mesmo codigoinfo
-                gr.deleteById(codigo);
+                gastoRepository.deleteById(codigo);
             }else{
-                gr.deleteById(codigo);
+                gastoRepository.deleteById(codigo);
             }
 
            
@@ -367,16 +367,15 @@ public class GastoService {
 
 
 
-    /*public double somaDosGastos(){
-        return gr.somaDosGastos();
+    public double somaDosGastos(){
+        return gastoRepository.somaDosGastos();
     }
 
 
     // Método para obter a soma dos gastos por mês e ano
     public Double somaDosGastosPorMesEAno(int mes, int ano) {
-        return gr.somaDosGastosPorMesEAno(mes, ano);
+        return gastoRepository.somaDosGastosPorMesEAno(mes, ano);
     }
-*/
 
     //_____________________________________________________________________________________________________________________
 

@@ -1,5 +1,6 @@
 package br.com.projeto1.financeiro.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,45 +18,45 @@ import br.com.projeto1.financeiro.service.EntradaService;
 @RestController
 @CrossOrigin("*")
 public class EntradaController {
-    
-    private EntradaService entradaServico;
+    @Autowired
+    private EntradaService entradaService;
 
 
     @DeleteMapping("/removerentrada/{codigo}")
     public ResponseEntity<Resposta> remover(@PathVariable long codigo){
-        return entradaServico.removerentrada(codigo);
+        return entradaService.removerentrada(codigo);
     }
 
     @PutMapping("/alterarentrada")
-    public ResponseEntity<?> alterar(@RequestBody Entrada em){
-        return entradaServico.cadastrarentrada(em, "alteraentrada");
+    public ResponseEntity<?> alterar(@RequestBody Entrada entrada){
+        return entradaService.cadastrarentrada(entrada, "alteraentrada");
     }
 
     //metodo post é para cadastrar
     @PostMapping("/cadastrarentrada")
-    public ResponseEntity<?> cadastrar(@RequestBody Entrada em){
-        return entradaServico.cadastrarentrada(em, "cadastrarentrada");
+    public ResponseEntity<?> cadastrar(@RequestBody Entrada entrada){
+        return entradaService.cadastrarentrada(entrada, "cadastrarentrada");
     }
 
     @GetMapping("/listarentrada")
     public Iterable<Entrada> listar(){
-        return entradaServico.listarentrada();
+        return entradaService.listarentrada();
     }
     @GetMapping("/listarentradas/{ano}/{mes}")
     public Iterable<Entrada> listarPorMesEAnoe(@PathVariable int ano, @PathVariable int mes) {
-        return entradaServico.listarEntradasPorMesEAno(mes, ano);
+        return entradaService.listarEntradasPorMesEAno(mes, ano);
     }
 
 
     @GetMapping("/somadasentradas")
     public Double somar(){
-        return entradaServico.somadasentradas();
+        return entradaService.somadasentradas();
     }
 
     // Endpoint para obter a soma dos gastos por mês e ano
     @GetMapping("/somadasentradas/{ano}/{mes}")
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
-        return entradaServico.somaDasEntradasPorMesEAno(mes, ano);
+        return entradaService.somaDasEntradasPorMesEAno(mes, ano);
     }
     
 }

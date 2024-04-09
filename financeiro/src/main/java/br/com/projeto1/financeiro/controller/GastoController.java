@@ -23,31 +23,31 @@ import br.com.projeto1.financeiro.service.GastoService;
 public class GastoController {
 
     @Autowired
-    private GastoService gs;
+    private GastoService gastoService;
 
 
    
 
     @DeleteMapping("/removergasto/{codigo}")
     public ResponseEntity<Resposta> remover(@PathVariable long codigo){
-        return gs.removergasto(codigo);
+        return gastoService.removergasto(codigo);
     }
 
     @PutMapping("/alterargasto")
     public ResponseEntity<?> alterar(@RequestBody Gasto gm){
-        return gs.cadastrargasto(gm, "alterargasto");
+        return gastoService.cadastrargasto(gm, "alterargasto");
     }
 
     //metodo post é para cadastrar
     @PostMapping("/cadastrargasto")
     public ResponseEntity<?> cadastrar(@RequestBody Gasto gm){
-        return gs.cadastrargasto(gm, "cadastrargasto");
+        return gastoService.cadastrargasto(gm, "cadastrargasto");
     }
     
     //metodo post é para cadastrar
     @PostMapping("/cadastrargastoparcelado")
     public ResponseEntity<?> cadastrargastoparcelado(@RequestBody Info im){
-        return gs.cadastrargastoparcelado(im, "cadastrargastoparcelado");
+        return gastoService.cadastrargastoparcelado(im, "cadastrargastoparcelado");
     }
 
     //metodo post é para cadastrar
@@ -58,17 +58,17 @@ public class GastoController {
     
     @GetMapping("/listargastos")
     public Iterable<Gasto> listar(){
-        return gs.listargastos();
+        return gastoService.listargastos();
     }
 
     // Endpoint para listar gastos por mês e ano
     @GetMapping("/listargastos/{ano}/{mes}")
     public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
-        return gs.listargastosPorMesEAno(mes, ano);
+        return gastoService.listargastosPorMesEAno(mes, ano);
     }
     @GetMapping("/gastosPorFonte/{fonte}")
     public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
-        return gs.listarGastosPorFonte(fonte);
+        return gastoService.listarGastosPorFonte(fonte);
     }
 
     @GetMapping("")
@@ -78,17 +78,17 @@ public class GastoController {
 
 
 
-  /*   @GetMapping("/somadosgasto")
+    @GetMapping("/somadosgasto")
     public Double somar(){
-        return gs.somaDosGastos();
+        return gastoService.somaDosGastos();
     }
     
 
     // Endpoint para obter a soma dos gastos por mês e ano
     @GetMapping("/somadosgasto/{ano}/{mes}")
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
-        return gs.somaDosGastosPorMesEAno(mes, ano);
-    }*/
+        return gastoService.somaDosGastosPorMesEAno(mes, ano);
+    }
 
 
 

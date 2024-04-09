@@ -15,16 +15,16 @@ import br.com.projeto1.financeiro.service.FonteService;
 @CrossOrigin(origins = "*")
 public class FonteController {
     @Autowired
-    FonteService fs;
+    FonteService fonteService;
 
     @PostMapping("/cadastrarfonte")
-    public ResponseEntity<?> cadastrar(@RequestBody Fonte fm){
-        return fs.cadastrarfonte(fm, "cadastrarfonte");
+    public ResponseEntity<?> cadastrar(@RequestBody Fonte fonte){
+        return fonteService.cadastrarfonte(fonte, "cadastrarfonte");
     }
 
     @GetMapping("/listarfontes")
     public Iterable<Fonte> listar(){
-        return fs.listarfontes();
+        return fonteService.listarfontes();
     }
 
 

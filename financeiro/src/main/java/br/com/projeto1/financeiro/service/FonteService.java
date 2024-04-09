@@ -12,30 +12,30 @@ import br.com.projeto1.financeiro.model.Resposta;
 @Service
 public class FonteService {
     @Autowired
-    FonteRepository fr;
+    FonteRepository fonteRepository;
 
     @Autowired
     Resposta rm;
 
     //metodo para cadastrar ou alterar Fontes
-    public ResponseEntity<?> cadastrarfonte (Fonte fm, String acao){
+    public ResponseEntity<?> cadastrarfonte (Fonte fonte, String acao){
        
-            if(fm.getNomefonte().equals("")){
+            if(fonte.getNomefonte().equals("")){
                 rm.setMensagem("a nome é obrigatorio!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-            }else if(fm.getDiadopagamento() == 0){
+            }else if(fonte.getDiadopagamento() == 0){
                 rm.setMensagem("o dia do pagamento é obrigatório!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-            } else if(fm.getDialimite() == 0){
+            } else if(fonte.getDialimite() == 0){
                 rm.setMensagem("a data limite é obrigatoria!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             }else{
                 if(acao.equals("cadastrarfonte")){
                     rm.setMensagem("deu");
-                    return new ResponseEntity<Fonte>(fr.save(fm),HttpStatus.CREATED);
+                    return new ResponseEntity<Fonte>(fonteRepository.save(fonte),HttpStatus.CREATED);
                 }else{
                     rm.setMensagem("deu");
-                    return new ResponseEntity<Fonte>(fr.save(fm),HttpStatus.OK);
+                    return new ResponseEntity<Fonte>(fonteRepository.save(fonte),HttpStatus.OK);
                 }
             }
         
@@ -44,6 +44,6 @@ public class FonteService {
 
     //metodo para listar todos os gastos
     public Iterable<Fonte> listarfontes(){
-        return fr.findAll();
+        return fonteRepository.findAll();
     }
 }
