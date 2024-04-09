@@ -51,7 +51,7 @@ function Entradas(){
   useEffect(() => {
 
     //requisita dados do link
-    fetch("https://a3-engenhariadesoftware.onrender.com/gastos")
+    fetch("https://a3-engenhariadesoftware.onrender.com/entradas")
 
 
     //.then os dados recebidos precisam ser transformados em jason
