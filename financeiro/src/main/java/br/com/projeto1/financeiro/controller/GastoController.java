@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto1.financeiro.model.Gasto;
@@ -19,44 +20,42 @@ import br.com.projeto1.financeiro.model.Resposta;
 import br.com.projeto1.financeiro.service.GastoService;
 
 @RestController
+@RequestMapping("/gastos")
 @CrossOrigin(origins = "*")
 public class GastoController {
 
     @Autowired
     private GastoService gastoService;
 
-
-   
-
-    @DeleteMapping("/removergasto/{codigo}")
+    @DeleteMapping("/remover/{codigo}")
     public ResponseEntity<Resposta> remover(@PathVariable long codigo){
         return gastoService.removergasto(codigo);
     }
 
-    @PutMapping("/alterargasto")
+    @PutMapping("/alterar")
     public ResponseEntity<?> alterar(@RequestBody Gasto gm){
         return gastoService.cadastrargasto(gm, "alterargasto");
     }
 
     //metodo post é para cadastrar
-    @PostMapping("/cadastrargasto")
+    @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@RequestBody Gasto gm){
         return gastoService.cadastrargasto(gm, "cadastrargasto");
     }
     
     //metodo post é para cadastrar
-    @PostMapping("/cadastrargastoparcelado")
+    @PostMapping("/cadastrarparcelamento")
     public ResponseEntity<?> cadastrargastoparcelado(@RequestBody Info im){
         return gastoService.cadastrargastoparcelado(im, "cadastrargastoparcelado");
     }
 
     //metodo post é para cadastrar
-   /*  @PostMapping("/cadastrargastocredito/{fonte}")
-    public ResponseEntity<?> cadastrargastocredito(@RequestBody GastosModelo gastosModelo,@PathVariable Long fonte){
-        return gs.cadastrargastocredito(gastosModelo,fonte, "cadastrargastocredito");
-    }*/
+    @PostMapping("/cadastrargastocredito/{fonte}")
+    public ResponseEntity<?> cadastrargastocredito(@RequestBody Gasto gasto,@PathVariable Long fonte){
+        return gastoService.cadastrargastocredito(gasto,fonte, "cadastrargastocredito");
+    }
     
-    @GetMapping("/listargastos")
+    @GetMapping("")
     public Iterable<Gasto> listar(){
         return gastoService.listargastos();
     }
@@ -69,11 +68,6 @@ public class GastoController {
     @GetMapping("/gastosPorFonte/{fonte}")
     public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
         return gastoService.listarGastosPorFonte(fonte);
-    }
-
-    @GetMapping("")
-    public String rota(){
-        return "API do projeto funcionando!";
     }
 
 

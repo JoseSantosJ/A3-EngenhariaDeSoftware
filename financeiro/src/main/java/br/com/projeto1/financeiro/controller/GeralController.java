@@ -15,6 +15,12 @@ public class GeralController {
     @Autowired
     private GeralService geralServico;
 
+    @GetMapping("")
+    public String rota(){
+        return "API do projeto funcionando!";
+    }
+
+    
     @GetMapping("/total")
     public Double total(){
         return geralServico.total();

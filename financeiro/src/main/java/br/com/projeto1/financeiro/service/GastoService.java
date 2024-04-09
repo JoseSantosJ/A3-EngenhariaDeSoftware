@@ -30,7 +30,7 @@ public class GastoService {
     private Resposta rm;
 
     //@Autowired
-    Fonte fm;
+    Fonte fonte;
 
    // @Autowired
     private FonteRepository fonteRepository;
@@ -83,7 +83,7 @@ public class GastoService {
     }
 
     //metodo para cadastrar ou alterar gastos no credito
-    public ResponseEntity<?> cadastrargastocredito (Gasto gastosModelo,Long fonte, String acao){
+    public ResponseEntity<?> cadastrargastocredito (Gasto gastosModelo,Long codigoFonte, String acao){
        
         if(gastosModelo.getData() == null){
             rm.setMensagem("a data  da compra é obrigatorio!");
@@ -104,20 +104,20 @@ public class GastoService {
                 infoModelo.setValordp(gastosModelo.getValor());
                 infoModelo.setNdp(1);
                 infoModelo.setTipo('i');
-                infoModelo.setFonte(fonte);
+                infoModelo.setFonte(codigoFonte);
                 infoRepository.save(infoModelo);
-                fm = fonteRepository.findById(fonte).orElse(null);
+                fonte = fonteRepository.findById(codigoFonte).orElse(null);
                 
-                if(gastosModelo.getData().getDayOfMonth() >= fm.getDialimite()){
+                if(gastosModelo.getData().getDayOfMonth() >= fonte.getDialimite()){
                     
-                    gastosModelo.setData(gastosModelo.getData().plusMonths(2).withDayOfMonth(fm.getDiadopagamento()));
+                    gastosModelo.setData(gastosModelo.getData().plusMonths(2).withDayOfMonth(fonte.getDiadopagamento()));
                 }else {
-                    gastosModelo.setData(gastosModelo.getData().plusMonths(1).withDayOfMonth(fm.getDiadopagamento()));
+                    gastosModelo.setData(gastosModelo.getData().plusMonths(1).withDayOfMonth(fonte.getDiadopagamento()));
                 }
                 
                 gastosModelo.setInfo(infoModelo.getCodigoinf());
                 gastosModelo.setTipo('c');
-                gastosModelo.setFonte(fm.getCodigofonte());
+                gastosModelo.setFonte(fonte.getCodigofonte());
                
                 return new ResponseEntity<Gasto>(gastoRepository.save(gastosModelo),HttpStatus.CREATED);
             }else{

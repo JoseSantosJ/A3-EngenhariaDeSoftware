@@ -48,14 +48,14 @@ function EntradasMes() {
 
   const buscarDadosTabela = () => {
     if (anoSelecionado && mesSelecionado) {
-      fetch('https://a3-engenhariadesoftware.onrender.com/listarentradas/'+anoSelecionado+'/'+mesSelecionado)
+      fetch('https://a3-engenhariadesoftware.onrender.com/entradas/'+anoSelecionado+'/'+mesSelecionado)
         .then(retorno => retorno.json())
         .then(retorno_convertido => {
           setDadosTabela(retorno_convertido);
         })
         .catch(erro => console.error('Erro ao buscar dados:', erro));
 
-      fetch('https://a3-engenhariadesoftware.onrender.com/somadasentradas/'+anoSelecionado+'/'+mesSelecionado)
+      fetch('https://a3-engenhariadesoftware.onrender.com/entradas/soma/'+anoSelecionado+'/'+mesSelecionado)
         .then(retorno => retorno.json())
         .then(retorno_convertido => {
           setSomaentradas(retorno_convertido);
@@ -114,7 +114,7 @@ function EntradasMes() {
   useEffect(() => {
 
     //requisita dados do link
-    fetch("https://a3-engenhariadesoftware.onrender.com/listarentrada")
+    fetch("https://a3-engenhariadesoftware.onrender.com/entradas")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -129,7 +129,7 @@ function EntradasMes() {
   //obtendo os dados digitados
 
     const remover = () => {
-      fetch('https://a3-engenhariadesoftware.onrender.com/removerentrada/'+objentrada.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+      fetch('https://a3-engenhariadesoftware.onrender.com/entradas/remover/'+objentrada.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
         method: 'delete',
         headers:{
           'Content-type':'application/json',
@@ -165,7 +165,7 @@ function EntradasMes() {
           //alterar entrada
   //alterar entrada
   const alterar = () => {
-    fetch('https://a3-engenhariadesoftware.onrender.com/alterarentrada',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/entradas/alterar',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'put',
       body:JSON.stringify(objentrada),
       headers:{

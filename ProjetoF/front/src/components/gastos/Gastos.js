@@ -44,7 +44,7 @@ function Gastos(){
   useEffect(() => {
 
     //requisita dados do link
-    fetch("https://a3-engenhariadesoftware.onrender.com/listargastos")
+    fetch("https://a3-engenhariadesoftware.onrender.com/gastos")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -61,7 +61,7 @@ function Gastos(){
   useEffect(() => {
 
     //requisita dados do link
-    fetch("https://a3-engenhariadesoftware.onrender.com/listarfontes")
+    fetch("https://a3-engenhariadesoftware.onrender.com/fontes")
 
 
     //.then os dados recebidos precisam ser transformados em jason
@@ -106,7 +106,7 @@ function Gastos(){
     if(btnparcelamento == false){
       if (objGasto.codigofonte !== 0){
         objGasto.fonte = objGasto.codigofonte;
-        fetch('https://a3-engenhariadesoftware.onrender.com/cadastrargastocredito/'+objGasto.codigofonte,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+        fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrargastocredito/'+objGasto.codigofonte,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
           method: 'post',
           body:JSON.stringify(objGasto),
           headers:{
@@ -129,7 +129,7 @@ function Gastos(){
 
         })
       }else{
-        fetch('https://a3-engenhariadesoftware.onrender.com/cadastrargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+        fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrar',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
           method: 'post',
           body:JSON.stringify(objGasto),
           headers:{
@@ -155,7 +155,7 @@ function Gastos(){
       }
 
     }else{
-      fetch('https://a3-engenhariadesoftware.onrender.com/cadastrargastoparcelado',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+      fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrargastoparcelado',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
         method: 'post',
         body:JSON.stringify(objGasto),
         headers:{
@@ -182,7 +182,7 @@ function Gastos(){
 
   //Remover Gasto
   const remover = () => {
-    fetch('https://a3-engenhariadesoftware.onrender.com/removergasto/'+objGasto.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/gastos/remover/'+objGasto.codigo,/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'delete',
       headers:{
         'Content-type':'application/json',
@@ -217,7 +217,7 @@ function Gastos(){
 
   //alterar Gasto
   const alterar = () => {
-    fetch('https://a3-engenhariadesoftware.onrender.com/alterargasto',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrar',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'put',
       body:JSON.stringify(objGasto),
       headers:{
