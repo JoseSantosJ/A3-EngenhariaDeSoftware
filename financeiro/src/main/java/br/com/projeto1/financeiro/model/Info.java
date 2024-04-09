@@ -1,6 +1,5 @@
 package br.com.projeto1.financeiro.model;
 
-
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -15,31 +14,31 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Gastos")
+@Table(name = "Info")
 @Getter
 @Setter
-public class GastosModelo {
+public class Info {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
-    //data da compra
+    private long codigoinf;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate datac;
 
     @Column(columnDefinition = "DECIMAL(10,2)")
     private double valor;
 
     private String motivo;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate data;
+    //valor da parcela
+    @Column(columnDefinition = "DECIMAL(10,2)")
+    private double valordp;
+
+    //numero de parcelas
+    private int ndp;
 
     //tipo
     private char tipo;
 
-    //chave estrangeira codigo info    
-    private long info;
-
-    //chave estrangeira codigo fonte
-    private long fonte;
-
-    
+    private Long fonte;
 }

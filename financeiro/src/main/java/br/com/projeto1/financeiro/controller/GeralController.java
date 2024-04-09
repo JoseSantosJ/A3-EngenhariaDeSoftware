@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.service.GeralServico;
+import br.com.projeto1.financeiro.service.GeralService;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class GeralControle {
+public class GeralController {
     
     @Autowired
-    private GeralServico geralServico;
+    private GeralService geralServico;
 
     @GetMapping("/total")
     public Double total(){

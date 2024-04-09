@@ -1,6 +1,5 @@
 package br.com.projeto1.financeiro.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,52 +10,52 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.model.EntradasModelo;
-import br.com.projeto1.financeiro.model.RespostaModelo;
-import br.com.projeto1.financeiro.service.EntradasServico;
+import br.com.projeto1.financeiro.model.Entrada;
+import br.com.projeto1.financeiro.model.Resposta;
+import br.com.projeto1.financeiro.service.EntradaService;
 
 @RestController
 @CrossOrigin("*")
-public class EntradasControle {
-    @Autowired
-    private EntradasServico es;
+public class EntradaController {
+    
+    private EntradaService entradaServico;
 
 
     @DeleteMapping("/removerentrada/{codigo}")
-    public ResponseEntity<RespostaModelo> remover(@PathVariable long codigo){
-        return es.removerentrada(codigo);
+    public ResponseEntity<Resposta> remover(@PathVariable long codigo){
+        return entradaServico.removerentrada(codigo);
     }
 
     @PutMapping("/alterarentrada")
-    public ResponseEntity<?> alterar(@RequestBody EntradasModelo gm){
-        return es.cadastrarentrada(gm, "alterargasto");
+    public ResponseEntity<?> alterar(@RequestBody Entrada em){
+        return entradaServico.cadastrarentrada(em, "alteraentrada");
     }
 
     //metodo post é para cadastrar
     @PostMapping("/cadastrarentrada")
-    public ResponseEntity<?> cadastrar(@RequestBody EntradasModelo gm){
-        return es.cadastrarentrada(gm, "cadastrarentrada");
+    public ResponseEntity<?> cadastrar(@RequestBody Entrada em){
+        return entradaServico.cadastrarentrada(em, "cadastrarentrada");
     }
 
     @GetMapping("/listarentrada")
-    public Iterable<EntradasModelo> listar(){
-        return es.listarentrada();
+    public Iterable<Entrada> listar(){
+        return entradaServico.listarentrada();
     }
     @GetMapping("/listarentradas/{ano}/{mes}")
-    public Iterable<EntradasModelo> listarPorMesEAnoe(@PathVariable int ano, @PathVariable int mes) {
-        return es.listarEntradasPorMesEAno(mes, ano);
+    public Iterable<Entrada> listarPorMesEAnoe(@PathVariable int ano, @PathVariable int mes) {
+        return entradaServico.listarEntradasPorMesEAno(mes, ano);
     }
 
 
     @GetMapping("/somadasentradas")
     public Double somar(){
-        return es.somadasentradas();
+        return entradaServico.somadasentradas();
     }
 
     // Endpoint para obter a soma dos gastos por mês e ano
     @GetMapping("/somadasentradas/{ano}/{mes}")
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
-        return es.somaDasEntradasPorMesEAno(mes, ano);
+        return entradaServico.somaDasEntradasPorMesEAno(mes, ano);
     }
     
 }

@@ -3,10 +3,10 @@ package br.com.projeto1.financeiro.Repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.projeto1.financeiro.model.InfoModelo;
+import br.com.projeto1.financeiro.model.Info;
 
 @Repository
-public interface InfoRepositorio extends CrudRepository <InfoModelo,Long>{
+public interface InfoRepository extends CrudRepository <Info,Long>{
     
     
 }

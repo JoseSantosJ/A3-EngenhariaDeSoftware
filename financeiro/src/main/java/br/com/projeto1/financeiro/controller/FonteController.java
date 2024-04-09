@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.model.FontesModelo;
-import br.com.projeto1.financeiro.service.FontesServico;
+import br.com.projeto1.financeiro.model.Fonte;
+import br.com.projeto1.financeiro.service.FonteService;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class FontesControle {
+public class FonteController {
     @Autowired
-    FontesServico fs;
+    FonteService fs;
 
     @PostMapping("/cadastrarfonte")
-    public ResponseEntity<?> cadastrar(@RequestBody FontesModelo fm){
+    public ResponseEntity<?> cadastrar(@RequestBody Fonte fm){
         return fs.cadastrarfonte(fm, "cadastrarfonte");
     }
 
     @GetMapping("/listarfontes")
-    public Iterable<FontesModelo> listar(){
+    public Iterable<Fonte> listar(){
         return fs.listarfontes();
     }
 

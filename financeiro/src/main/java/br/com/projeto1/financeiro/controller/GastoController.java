@@ -13,69 +13,61 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.model.FontesModelo;
-import br.com.projeto1.financeiro.model.GastosModelo;
-import br.com.projeto1.financeiro.model.InfoModelo;
-import br.com.projeto1.financeiro.model.RespostaModelo;
-import br.com.projeto1.financeiro.service.compra.CreditoServico;
-import br.com.projeto1.financeiro.service.compra.GastosServico;
-import br.com.projeto1.financeiro.service.compra.ParcelamentoServico;
+import br.com.projeto1.financeiro.model.Gasto;
+import br.com.projeto1.financeiro.model.Info;
+import br.com.projeto1.financeiro.model.Resposta;
+import br.com.projeto1.financeiro.service.GastoService;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class GastosControle {
+public class GastoController {
 
     @Autowired
-    private GastosServico gs;
-    
-    @Autowired
-    private ParcelamentoServico ps;
+    private GastoService gs;
 
-    @Autowired
-    private CreditoServico cs;
 
    
 
     @DeleteMapping("/removergasto/{codigo}")
-    public ResponseEntity<RespostaModelo> remover(@PathVariable long codigo){
+    public ResponseEntity<Resposta> remover(@PathVariable long codigo){
         return gs.removergasto(codigo);
     }
 
     @PutMapping("/alterargasto")
-    public ResponseEntity<?> alterar(@RequestBody GastosModelo gm){
+    public ResponseEntity<?> alterar(@RequestBody Gasto gm){
         return gs.cadastrargasto(gm, "alterargasto");
     }
 
     //metodo post é para cadastrar
     @PostMapping("/cadastrargasto")
-    public ResponseEntity<?> cadastrar(@RequestBody GastosModelo gm){
+    public ResponseEntity<?> cadastrar(@RequestBody Gasto gm){
         return gs.cadastrargasto(gm, "cadastrargasto");
     }
     
     //metodo post é para cadastrar
     @PostMapping("/cadastrargastoparcelado")
-    public ResponseEntity<?> cadastrargastoparcelado(@RequestBody InfoModelo im){
-        return ps.cadastrargastoparcelado(im, "cadastrargastoparcelado");
+    public ResponseEntity<?> cadastrargastoparcelado(@RequestBody Info im){
+        return gs.cadastrargastoparcelado(im, "cadastrargastoparcelado");
     }
 
     //metodo post é para cadastrar
-    @PostMapping("/cadastrargastocredito/{fonte}")
+   /*  @PostMapping("/cadastrargastocredito/{fonte}")
     public ResponseEntity<?> cadastrargastocredito(@RequestBody GastosModelo gastosModelo,@PathVariable Long fonte){
-        return cs.cadastrargastocredito(gastosModelo,fonte, "cadastrargastocredito");
-    }
+        return gs.cadastrargastocredito(gastosModelo,fonte, "cadastrargastocredito");
+    }*/
     
     @GetMapping("/listargastos")
-    public Iterable<GastosModelo> listar(){
+    public Iterable<Gasto> listar(){
         return gs.listargastos();
     }
 
     // Endpoint para listar gastos por mês e ano
     @GetMapping("/listargastos/{ano}/{mes}")
-    public Iterable<GastosModelo> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
+    public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gs.listargastosPorMesEAno(mes, ano);
     }
     @GetMapping("/gastosPorFonte/{fonte}")
-    public Iterable<GastosModelo> listarPorFonte(@PathVariable Long fonte){
+    public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
         return gs.listarGastosPorFonte(fonte);
     }
 
@@ -86,7 +78,7 @@ public class GastosControle {
 
 
 
-    @GetMapping("/somadosgasto")
+  /*   @GetMapping("/somadosgasto")
     public Double somar(){
         return gs.somaDosGastos();
     }
@@ -96,7 +88,7 @@ public class GastosControle {
     @GetMapping("/somadosgasto/{ano}/{mes}")
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gs.somaDosGastosPorMesEAno(mes, ano);
-    }
+    }*/
 
 
 

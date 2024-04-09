@@ -3,16 +3,16 @@ package br.com.projeto1.financeiro.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.Repository.EntradasRepositorio;
-import br.com.projeto1.financeiro.Repository.GastosRepositorio;
+import br.com.projeto1.financeiro.Repository.EntradaRepository;
+import br.com.projeto1.financeiro.Repository.GastoRepository;
 
 @Service
-public class GeralServico {
+public class GeralService {
     @Autowired
-    private EntradasRepositorio entradasrepositorio;
+    private EntradaRepository entradasrepositorio;
     
     @Autowired 
-    private GastosRepositorio gastosRepositorio;
+    private GastoRepository gastosRepositorio;
 
 
     public double total(){

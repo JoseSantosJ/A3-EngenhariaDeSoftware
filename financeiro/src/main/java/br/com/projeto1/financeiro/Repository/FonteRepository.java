@@ -3,9 +3,9 @@ package br.com.projeto1.financeiro.Repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.projeto1.financeiro.model.FontesModelo;
+import br.com.projeto1.financeiro.model.Fonte;
 
 @Repository
-public interface FontesRepositorio extends CrudRepository<FontesModelo, Long>{
+public interface FonteRepository extends CrudRepository<Fonte, Long>{
     
 }

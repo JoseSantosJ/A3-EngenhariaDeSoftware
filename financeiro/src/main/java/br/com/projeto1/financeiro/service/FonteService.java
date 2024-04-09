@@ -5,37 +5,37 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.Repository.FontesRepositorio;
-import br.com.projeto1.financeiro.model.FontesModelo;
-import br.com.projeto1.financeiro.model.RespostaModelo;
+import br.com.projeto1.financeiro.Repository.FonteRepository;
+import br.com.projeto1.financeiro.model.Fonte;
+import br.com.projeto1.financeiro.model.Resposta;
 
 @Service
-public class FontesServico {
+public class FonteService {
     @Autowired
-    FontesRepositorio fr;
+    FonteRepository fr;
 
     @Autowired
-    RespostaModelo rm;
+    Resposta rm;
 
     //metodo para cadastrar ou alterar Fontes
-    public ResponseEntity<?> cadastrarfonte (FontesModelo fm, String acao){
+    public ResponseEntity<?> cadastrarfonte (Fonte fm, String acao){
        
             if(fm.getNomefonte().equals("")){
                 rm.setMensagem("a nome é obrigatorio!");
-                return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             }else if(fm.getDiadopagamento() == 0){
                 rm.setMensagem("o dia do pagamento é obrigatório!");
-                return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             } else if(fm.getDialimite() == 0){
                 rm.setMensagem("a data limite é obrigatoria!");
-                return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             }else{
                 if(acao.equals("cadastrarfonte")){
                     rm.setMensagem("deu");
-                    return new ResponseEntity<FontesModelo>(fr.save(fm),HttpStatus.CREATED);
+                    return new ResponseEntity<Fonte>(fr.save(fm),HttpStatus.CREATED);
                 }else{
                     rm.setMensagem("deu");
-                    return new ResponseEntity<FontesModelo>(fr.save(fm),HttpStatus.OK);
+                    return new ResponseEntity<Fonte>(fr.save(fm),HttpStatus.OK);
                 }
             }
         
@@ -43,7 +43,7 @@ public class FontesServico {
     }
 
     //metodo para listar todos os gastos
-    public Iterable<FontesModelo> listarfontes(){
+    public Iterable<Fonte> listarfontes(){
         return fr.findAll();
     }
 }
