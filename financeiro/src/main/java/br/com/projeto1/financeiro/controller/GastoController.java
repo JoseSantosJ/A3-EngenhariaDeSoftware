@@ -72,14 +72,14 @@ public class GastoController {
 
 
 
-    @GetMapping("/somadosgasto")
+    @GetMapping("/soma")
     public Double somar(){
         return gastoService.somaDosGastos();
     }
     
 
     // Endpoint para obter a soma dos gastos por mês e ano
-    @GetMapping("/somadosgasto/{ano}/{mes}")
+    @GetMapping("/soma/{ano}/{mes}")
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gastoService.somaDosGastosPorMesEAno(mes, ano);
     }
