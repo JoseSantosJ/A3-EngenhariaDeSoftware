@@ -4,7 +4,7 @@ function SumGastos() {
   const [sumGasto, setSumGastos] = useState([]);
 
   useEffect(() => {
-    fetch("https://a3-engenhariadesoftware.onrender.com/somadosgasto")
+    fetch("https://a3-engenhariadesoftware.onrender.com/gastos/soma")
       .then(retorno => retorno.json())
       .then(retorno_convertido => setSumGastos(retorno_convertido));
   }, []);
