@@ -30,9 +30,9 @@ public class GastoService {
     private Resposta rm;
 
     //@Autowired
-    Fonte fonte;
+    private Fonte fonte;
 
-   // @Autowired
+    @Autowired
     private FonteRepository fonteRepository;
 
 
