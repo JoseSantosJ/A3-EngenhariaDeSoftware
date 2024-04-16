@@ -14,7 +14,7 @@ import br.com.projeto1.financeiro.service.FonteService;
 
 @RestController
 @RequestMapping("/fontes")
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
 public class FonteController {
     @Autowired
     FonteService fonteService;

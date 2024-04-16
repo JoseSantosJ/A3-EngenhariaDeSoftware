@@ -21,28 +21,47 @@ import br.com.projeto1.financeiro.service.GastoService;
 
 @RestController
 @RequestMapping("/gastos")
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
 public class GastoController {
 
     @Autowired
     private GastoService gastoService;
 
-    @DeleteMapping("/remover/{codigo}")
-    public ResponseEntity<Resposta> remover(@PathVariable long codigo){
-        return gastoService.removergasto(codigo);
+
+
+    // Listar
+    @GetMapping("")
+    public Iterable<Gasto> listar(){
+        return gastoService.listargastos();
     }
 
-    @PutMapping("/alterar")
-    public ResponseEntity<?> alterar(@RequestBody Gasto gm){
-        return gastoService.cadastrargasto(gm, "alterargasto");
+    @GetMapping("/gastosPorFonte/{fonte}")
+    public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
+        return gastoService.listarGastosPorFonte(fonte);
     }
 
+    // Endpoint para listar gastos por mês e ano
+    @GetMapping("/{ano}/{mes}")
+    public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
+        return gastoService.listargastosPorMesEAno(mes, ano);
+    }
+
+    @GetMapping("/semfontes")
+    public Iterable<Gasto> listarGastosSemFonte(){
+        return gastoService.listarGastosSemFontes();
+    }
+
+
+
+
+    //_____________________________________________________________________________________________________________________
+
+    //cadastrar
     //metodo post é para cadastrar
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@RequestBody Gasto gm){
         return gastoService.cadastrargasto(gm, "cadastrargasto");
     }
-    
     //metodo post é para cadastrar
     @PostMapping("/cadastrarparcelamento")
     public ResponseEntity<?> cadastrargastoparcelado(@RequestBody Info im){
@@ -54,24 +73,24 @@ public class GastoController {
     public ResponseEntity<?> cadastrargastocredito(@RequestBody Gasto gasto,@PathVariable Long fonte){
         return gastoService.cadastrargastocredito(gasto,fonte, "cadastrargastocredito");
     }
+
+    //_____________________________________________________________________________________________________________________
+
+    //remover
+    @DeleteMapping("/remover/{codigo}")
+    public ResponseEntity<Resposta> remover(@PathVariable long codigo){
+        return gastoService.removergasto(codigo);
+    }
+    //_____________________________________________________________________________________________________________________
     
-    @GetMapping("")
-    public Iterable<Gasto> listar(){
-        return gastoService.listargastos();
+    //alterar
+    @PutMapping("/alterar")
+    public ResponseEntity<?> alterar(@RequestBody Gasto gm){
+        return gastoService.cadastrargasto(gm, "alterargasto");
     }
+    //_____________________________________________________________________________________________________________________
 
-    // Endpoint para listar gastos por mês e ano
-    @GetMapping("/{ano}/{mes}")
-    public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
-        return gastoService.listargastosPorMesEAno(mes, ano);
-    }
-    @GetMapping("/gastosPorFonte/{fonte}")
-    public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
-        return gastoService.listarGastosPorFonte(fonte);
-    }
-
-
-
+    //somar
     @GetMapping("/soma")
     public Double somar(){
         return gastoService.somaDosGastos();
@@ -83,6 +102,7 @@ public class GastoController {
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gastoService.somaDosGastosPorMesEAno(mes, ano);
     }
+    //_____________________________________________________________________________________________________________________
 
 
 

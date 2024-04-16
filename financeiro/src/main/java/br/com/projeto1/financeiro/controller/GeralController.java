@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.projeto1.financeiro.service.GeralService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
 public class GeralController {
     
     @Autowired

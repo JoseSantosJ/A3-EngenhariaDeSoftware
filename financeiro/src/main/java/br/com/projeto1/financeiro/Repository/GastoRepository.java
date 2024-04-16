@@ -18,6 +18,9 @@ public interface GastoRepository extends CrudRepository<Gasto, Long>{
 
     Iterable<Gasto>  findByFonte(long fonte);
 
+    @Query("SELECT g FROM Gasto g WHERE g.fonte = 0")
+    Iterable<Gasto> gastoSemFonte();
+
     @Transactional
     void deleteByInfo(long info);
 

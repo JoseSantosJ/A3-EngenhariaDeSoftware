@@ -53,6 +53,10 @@ public class GastoService {
         return gastoRepository.findByMesEAno(mes, ano);
     }
 
+    public Iterable<Gasto>listarGastosSemFontes(){
+        return gastoRepository.gastoSemFonte();
+    }
+
     //_____________________________________________________________________________________________________________________
 
     /*metodos para cadastrar */
