@@ -14,7 +14,7 @@ function Gastos(){
     motivo:'',
     valor:'',
     ndp:'',
-    codigofonte:''
+    codigofonte:0
 
   }
 
@@ -217,7 +217,7 @@ function Gastos(){
 
   //alterar Gasto
   const alterar = () => {
-    fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrar',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+    fetch('https://a3-engenhariadesoftware.onrender.com/gastos/alterar',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
       method: 'put',
       body:JSON.stringify(objGasto),
       headers:{
