@@ -155,7 +155,7 @@ function Gastos(){
       }
 
     }else{
-      fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrargastoparcelado',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
+      fetch('https://a3-engenhariadesoftware.onrender.com/gastos/cadastrarparcelamento',/* normalmente fetch requisita funções GET mas como sera requisitado outra forma de methodo a ",{}" para passar as caracteristicas complementares*/{
         method: 'post',
         body:JSON.stringify(objGasto),
         headers:{
