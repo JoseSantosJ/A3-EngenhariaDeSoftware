@@ -47,6 +47,10 @@ public class GastoService {
         return gastoRepository.findByFonte(fonte);
     }
 
+    public Iterable<Gasto> listarGastosPorMesEFonte(Long fonte,int mes,int ano){
+        return gastoRepository.GastosMesEFonte(fonte, mes, ano);
+    }
+
 
     // Método para listar gastos por mês e ano
     public Iterable<Gasto> listargastosPorMesEAno(int mes, int ano) {
@@ -102,6 +106,8 @@ public class GastoService {
             Info infoModelo = new Info();
             
             if(acao.equals("cadastrargastocredito")){
+                
+                GastosFonteMes(codigoFonte,(gastosModelo.getData().getMonthValue()),(gastosModelo.getData().getYear()));
                 infoModelo.setDatac(gastosModelo.getData());
                 infoModelo.setValor(gastosModelo.getValor());
                 infoModelo.setMotivo(gastosModelo.getMotivo());
@@ -132,6 +138,24 @@ public class GastoService {
         
     
     
+    }
+
+    public void GastosFonteMes(long codigoFonte, int mes, int ano){
+        Double soma = somaDosGastosPorMesEFonte(codigoFonte, mes, ano);
+        if (soma == null) {
+            Fonte fonte = fonteRepository.findById(codigoFonte).orElse(null);
+            if (fonte != null) {
+                LocalDate data = LocalDate.of(ano, mes, fonte.getDiadopagamento());
+                Gasto novoGasto = new Gasto();
+                novoGasto.setData(data);
+                novoGasto.setValor(0.0); // Defina o valor inicial como 0.0
+                novoGasto.setMotivo(fonte.getNomefonte());
+                novoGasto.setTipo('f');
+                gastoRepository.save(novoGasto);
+            }
+        } else {
+            System.out.println("Não é necessário criar um novo registro.");
+        }
     }
     //metodo para cadastrar ou alterar gastos
     public ResponseEntity<?> cadastrargastoparcelado (Info im, String acao ){
@@ -379,6 +403,10 @@ public class GastoService {
     // Método para obter a soma dos gastos por mês e ano
     public Double somaDosGastosPorMesEAno(int mes, int ano) {
         return gastoRepository.somaDosGastosPorMesEAno(mes, ano);
+    }
+
+    public Double somaDosGastosPorMesEFonte(Long fonte,int mes,int ano){
+        return gastoRepository.somaDosGastosMesEFonte(fonte, mes, ano);
     }
 
     //_____________________________________________________________________________________________________________________

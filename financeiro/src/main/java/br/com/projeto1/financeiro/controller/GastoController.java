@@ -35,7 +35,7 @@ public class GastoController {
         return gastoService.listargastos();
     }
 
-    @GetMapping("/gastosPorFonte/{fonte}")
+    @GetMapping("/fonte/{fonte}")
     public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
         return gastoService.listarGastosPorFonte(fonte);
     }
@@ -44,6 +44,11 @@ public class GastoController {
     @GetMapping("/{ano}/{mes}")
     public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gastoService.listargastosPorMesEAno(mes, ano);
+    }
+
+    @GetMapping("/fontes/{fonte}/{ano}/{mes}")
+    public Iterable<Gasto> listarGastosPorFonteEMes(@PathVariable long fonte,@PathVariable int ano, @PathVariable int mes){
+        return gastoService.listarGastosPorMesEFonte(fonte, mes, ano);
     }
 
     @GetMapping("/semfontes")
@@ -97,10 +102,15 @@ public class GastoController {
     }
     
 
-    // Endpoint para obter a soma dos gastos por mês e ano
+    // a soma dos gastos por mês e ano
     @GetMapping("/soma/{ano}/{mes}")
     public Double somarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gastoService.somaDosGastosPorMesEAno(mes, ano);
+    }
+    
+    @GetMapping("/somadafonte/{fonte}/{ano}/{mes}")
+    public Double somaDosGastosPorMesEFonte(@PathVariable long fonte,@PathVariable int ano, @PathVariable int mes){
+        return gastoService.somaDosGastosPorMesEFonte(fonte, mes, ano);
     }
     //_____________________________________________________________________________________________________________________
 

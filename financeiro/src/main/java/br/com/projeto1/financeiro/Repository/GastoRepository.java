@@ -21,6 +21,13 @@ public interface GastoRepository extends CrudRepository<Gasto, Long>{
     @Query("SELECT g FROM Gasto g WHERE g.fonte = 0")
     Iterable<Gasto> gastoSemFonte();
 
+    @Query("SELECT g FROM Gasto g WHERE g.fonte = :fonte AND MONTH(g.data) = :mes AND YEAR(g.data) = :ano")
+    Iterable<Gasto> GastosMesEFonte(@Param("fonte") long fonte, @Param("mes") int mes, @Param("ano") int ano);
+
+    @Query("SELECT SUM(g.valor) FROM Gasto g WHERE g.fonte = :fonte AND MONTH(g.data) = :mes AND YEAR(g.data) = :ano")
+    Double somaDosGastosMesEFonte(@Param("fonte") long fonte, @Param("mes") int mes, @Param("ano") int ano);
+
+
     @Transactional
     void deleteByInfo(long info);
 
