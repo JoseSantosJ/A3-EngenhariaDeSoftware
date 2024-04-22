@@ -9,10 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.projeto1.financeiro.Repository.FonteMesRepository;
 import br.com.projeto1.financeiro.Repository.FonteRepository;
 import br.com.projeto1.financeiro.Repository.GastoRepository;
 import br.com.projeto1.financeiro.Repository.InfoRepository;
 import br.com.projeto1.financeiro.model.Fonte;
+import br.com.projeto1.financeiro.model.FonteMes;
 import br.com.projeto1.financeiro.model.Gasto;
 import br.com.projeto1.financeiro.model.Info;
 import br.com.projeto1.financeiro.model.Resposta;
@@ -35,6 +37,9 @@ public class GastoService {
     @Autowired
     private FonteRepository fonteRepository;
 
+    @Autowired
+    private FonteMesRepository fonteMesRepository;
+
 
     /*metodos para listar */
 
@@ -48,7 +53,7 @@ public class GastoService {
     }
 
     public Iterable<Gasto> listarGastosPorMesEFonte(Long fonte,int mes,int ano){
-        return gastoRepository.GastosMesEFonte(fonte, mes, ano);
+        return fonteMesRepository.GastosMesEFonte(fonte, mes, ano);
     }
 
 
@@ -85,6 +90,7 @@ public class GastoService {
     
                     return new ResponseEntity<Gasto>(gastoRepository.save(gm),HttpStatus.OK);
                 }
+                
             }
         
         
@@ -106,8 +112,9 @@ public class GastoService {
             Info infoModelo = new Info();
             
             if(acao.equals("cadastrargastocredito")){
-                
-                GastosFonteMes(codigoFonte,(gastosModelo.getData().getMonthValue()),(gastosModelo.getData().getYear()));
+                int mes = (gastosModelo.getData().getMonthValue());
+                int ano = (gastosModelo.getData().getYear());
+                FonteMes fonteMes = GastosFonteMes(codigoFonte,mes,ano);
                 infoModelo.setDatac(gastosModelo.getData());
                 infoModelo.setValor(gastosModelo.getValor());
                 infoModelo.setMotivo(gastosModelo.getMotivo());
@@ -115,6 +122,7 @@ public class GastoService {
                 infoModelo.setNdp(1);
                 infoModelo.setTipo('i');
                 infoModelo.setFonte(codigoFonte);
+                infoModelo.setFonteMes(fonteMes.getId());
                 infoRepository.save(infoModelo);
                 fonte = fonteRepository.findById(codigoFonte).orElse(null);
                 
@@ -128,8 +136,11 @@ public class GastoService {
                 gastosModelo.setInfo(infoModelo.getCodigoinf());
                 gastosModelo.setTipo('c');
                 gastosModelo.setFonte(fonte.getCodigofonte());
-               
-                return new ResponseEntity<Gasto>(gastoRepository.save(gastosModelo),HttpStatus.CREATED);
+                gastosModelo.setFontemes(fonteMes);
+                gastoRepository.save(gastosModelo);
+                fonteMesRepository.save(fonteMes);
+
+                return new ResponseEntity<Gasto>(gastoRepository.save(gastosModelo),HttpStatus.CREATED);  
             }else{
                 return new ResponseEntity<Info>(infoRepository.save(infoModelo),HttpStatus.OK);
             }
@@ -140,11 +151,39 @@ public class GastoService {
     
     }
 
-    public void GastosFonteMes(long codigoFonte, int mes, int ano){
-        Double soma = somaDosGastosPorMesEFonte(codigoFonte, mes, ano);
+    public FonteMes GastosFonteMes(long codigoFonte, int mes, int ano){
+        String id = (""+codigoFonte+mes+ano);
+        FonteMes fonteMes = fonteMesRepository.findById(id).orElse(null);
+
+        if (fonteMes == null) {
+            Fonte fonte = fonteRepository.findById(codigoFonte).orElse(null);
+
+            if (fonte != null) {
+                fonteMes = new FonteMes();
+                fonteMes.setId(id);
+                fonteMes.setNome(fonte.getNomefonte());
+                fonteMesRepository.save(fonteMes);
+            }
+
+        }
+        return fonteMes;
+
+        
+        /*Double soma = somaDosGastosPorMesEFonte(codigoFonte, mes, ano);
         if (soma == null) {
             Fonte fonte = fonteRepository.findById(codigoFonte).orElse(null);
             if (fonte != null) {
+                //cadastrarFonteMes(codigoFonte, mes, ano);
+                
+
+                FonteMes fonteMes = new FonteMes();
+
+                String id = (""+codigoFonte+mes+ano);
+                fonteMes.setId(id);
+
+                fonteMes.setFonte(fonte); 
+                
+                fonteMesRepository.save(fonteMes);
                 LocalDate data = LocalDate.of(ano, mes, fonte.getDiadopagamento());
                 Gasto novoGasto = new Gasto();
                 novoGasto.setData(data);
@@ -154,8 +193,10 @@ public class GastoService {
                 gastoRepository.save(novoGasto);
             }
         } else {
-            System.out.println("Não é necessário criar um novo registro.");
-        }
+            String id = (""+codigoFonte+mes+ano);
+            FonteMes fonteMes = fonteMesRepository.findById(id).orElse(null);
+            fonteMesRepository.save(fonteMes);
+        }*/
     }
     //metodo para cadastrar ou alterar gastos
     public ResponseEntity<?> cadastrargastoparcelado (Info im, String acao ){
@@ -345,11 +386,21 @@ public class GastoService {
                     return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
                 }
             }
-        
-    
-        
-    
     } 
+
+   /* public void cadastrarFonteMes(long codigoFonte, int mes, int ano){
+        FonteMes fonteMes = new FonteMes();
+        fonteMes.setFonte_id(codigoFonte);        
+
+        String id = (""+codigoFonte+mes+ano);
+        fonteMes.setId(id);
+
+        fonte = fonteRepository.findById(codigoFonte).orElse(null);
+
+        fonteMes.setNome(fonte.getNomefonte());
+        
+    }*/
+
     //_____________________________________________________________________________________________________________________
 
     /*metodos para remover */
@@ -406,7 +457,7 @@ public class GastoService {
     }
 
     public Double somaDosGastosPorMesEFonte(Long fonte,int mes,int ano){
-        return gastoRepository.somaDosGastosMesEFonte(fonte, mes, ano);
+        return fonteMesRepository.somaDosGastosMesEFonte(fonte, mes, ano);
     }
 
     //_____________________________________________________________________________________________________________________

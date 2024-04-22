@@ -41,4 +41,6 @@ public class Info {
     private char tipo;
 
     private Long fonte;
+
+    private String fonteMes;
 }

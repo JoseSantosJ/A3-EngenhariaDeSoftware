@@ -3,6 +3,7 @@ package br.com.projeto1.financeiro.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -10,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,6 +43,11 @@ public class Gasto {
 
     //chave estrangeira codigo fonte
     private long fonte;
+
+    @ManyToOne
+    @JoinColumn(name = "fontemes_id")
+    @JsonBackReference
+    private FonteMes fontemes;
 
     
 }
