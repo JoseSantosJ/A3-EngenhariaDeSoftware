@@ -12,8 +12,7 @@ function SumEntradas() {
   let valorEntrada = parseFloat(sumEntrada);
   valorEntrada = isNaN(valorEntrada) ? 0 : valorEntrada.toFixed(2);
 
-  return (valorEntrada.toFixed(2)
-  );
+  return (valorEntrada);
 }
 
 export default SumEntradas;

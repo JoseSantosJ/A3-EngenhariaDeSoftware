@@ -11,7 +11,7 @@ function SumGastos() {
 
   let valorGasto = parseFloat(sumGasto);
   valorGasto = isNaN(valorGasto) ? 0 : valorGasto.toFixed(2);
-  return (valorGasto.toFixed(2) );
+  return (valorGasto);
 }
 
 export default SumGastos;
