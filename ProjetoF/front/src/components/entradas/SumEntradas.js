@@ -9,7 +9,8 @@ function SumEntradas() {
       .then(retorno_convertido => setSumEntrada(retorno_convertido));
   }, []);
 
-  const valorEntrada = parseFloat(sumEntrada);
+  let valorGasto = parseFloat(sumEntrada);
+  valorEntrada = isNaN(valorGasto) ? 0 : valorEntrada.toFixed(2);
 
   return (valorEntrada.toFixed(2)
   );
