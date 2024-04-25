@@ -9,10 +9,10 @@ function SumEntradas() {
       .then(retorno_convertido => setSumEntrada(retorno_convertido));
   }, []);
 
-  let valorEntrada = parseFloat(sumEntrada);
-  valorEntrada = isNaN(valorEntrada) ? 0 : valorEntrada.toFixed(2);
+  const valorEntrada = parseFloat(sumEntrada);
 
-  return (valorEntrada);
+  return (valorEntrada.toFixed(2)
+  );
 }
 
 export default SumEntradas;

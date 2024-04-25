@@ -200,7 +200,7 @@ const aoDigitar = (e) => {
           <h1>Entradas</h1>
             <Formulario botao ={btnCadastrar} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj ={objEntrada} cancelar={limparFormulario} remover={remover} alterar={alterar} ></Formulario>
             <Tabela vetor={entradas} selecionar={selecionarProduto}/>
-            {SumEntradas() !== 0 && (
+            {SumEntradas() !== null && (
               <h2> Total  Recebido: R$ {SumEntradas()}</h2>
             )}
             

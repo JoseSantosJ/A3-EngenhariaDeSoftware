@@ -9,9 +9,9 @@ function SumGastos() {
       .then(retorno_convertido => setSumGastos(retorno_convertido));
   }, []);
 
-  let valorGasto = parseFloat(sumGasto);
-  valorGasto = isNaN(valorGasto) ? 0 : valorGasto.toFixed(2);
-  return (valorGasto);
+  const valorGasto = parseFloat(sumGasto);
+
+  return (valorGasto.toFixed(2) );
 }
 
 export default SumGastos;
