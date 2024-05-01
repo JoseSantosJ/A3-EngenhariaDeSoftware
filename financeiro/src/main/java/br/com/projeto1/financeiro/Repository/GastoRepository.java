@@ -6,8 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import br.com.projeto1.financeiro.model.FonteMes;
 import br.com.projeto1.financeiro.model.Gasto;
 import jakarta.transaction.Transactional;
+import java.util.List;
+
 
 @Repository
 public interface GastoRepository extends CrudRepository<Gasto, Long>{
@@ -17,6 +20,8 @@ public interface GastoRepository extends CrudRepository<Gasto, Long>{
     Iterable<Gasto>  findByOrderByData(); 
 
     Iterable<Gasto>  findByFonte(long fonte);
+
+    Iterable<Gasto> findByFontemes(FonteMes fontemes);
 
     @Query("SELECT g FROM Gasto g WHERE g.fonte = 0")
     Iterable<Gasto> gastoSemFonte();

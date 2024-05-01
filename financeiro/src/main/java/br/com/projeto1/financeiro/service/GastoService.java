@@ -165,6 +165,8 @@ public class GastoService {
                 fonteMesRepository.save(fonteMes);
             }
 
+            
+
         }
         return fonteMes;
 
@@ -197,94 +199,95 @@ public class GastoService {
             FonteMes fonteMes = fonteMesRepository.findById(id).orElse(null);
             fonteMesRepository.save(fonteMes);
         }*/
+
     }
-    //metodo para cadastrar ou alterar gastos
-    public ResponseEntity<?> cadastrargastoparcelado (Info im, String acao ){
+    //metodo para cadastrar ou alterar gastos parcelados
+    public ResponseEntity<?> cadastrargastoparcelado (Info info, String acao ){
         
        
-        if(im.getDatac() == null){
+        if(info.getDatac() == null){
             rm.setMensagem("a data da compra é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
         }
-        else if(im.getMotivo().equals("")){
+        else if(info.getMotivo().equals("")){
             rm.setMensagem("o motivo é obrigatório!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        }else if(im.getValordp() == 0 && (im.getValor() == 0 || im.getNdp() == 0)){
+        }else if(info.getValordp() == 0 && (info.getValor() == 0 || info.getNdp() == 0)){
             
             
             rm.setMensagem("o valor da parcela ou valor total é obrigatorio!1");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             
-        } else if(im.getValor() == 0 && (im.getValordp() == 0 || im.getNdp() == 0)){
+        } else if(info.getValor() == 0 && (info.getValordp() == 0 || info.getNdp() == 0)){
             rm.setMensagem("o valor total ou o valor da parcela é obrigatorio!2");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        }else if(im.getNdp() == 0){
+        }else if(info.getNdp() == 0){
             rm.setMensagem("o valor da parcela é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
         }else{
             if (acao.equals("cadastrargastoparcelado")) {
-                if(im.getValor() == 0) {
-                    im.setValor(im.getValordp() * im.getNdp());
+                if(info.getValor() == 0) {
+                    info.setValor(info.getValordp() * info.getNdp());
                 }
-                if(im.getValordp() == 0) {
-                    im.setValordp(im.getValor() / im.getNdp());
+                if(info.getValordp() == 0) {
+                    info.setValordp(info.getValor() / info.getNdp());
                 }
                 int p = 0;
-                String motivoo = im.getMotivo();
-                LocalDate dataParcela = im.getDatac();
-                Info infoModelo = im;
+                String motivoo = info.getMotivo();
+                LocalDate dataParcela = info.getDatac();
+                Info infoModelo = info;
                 infoRepository.save(infoModelo);
 
-                for (int i = im.getNdp(); i > 0; i--) {
+                for (int i = info.getNdp(); i > 0; i--) {
                     p++;
-                    motivoo = im.getMotivo()+" " + p + "/" + im.getNdp();
+                    motivoo = info.getMotivo()+" " + p + "/" + info.getNdp();
                     dataParcela = dataParcela.plusMonths(1);
                     
                     Gasto novoGasto = new Gasto();
                     novoGasto.setData(dataParcela);
                     novoGasto.setMotivo(motivoo);
-                    novoGasto.setValor(im.getValordp()); 
+                    novoGasto.setValor(info.getValordp()); 
                     novoGasto.setTipo('p');
-                    novoGasto.setInfo(im.getCodigoinf());
+                    novoGasto.setInfo(info.getCodigoinf());
 
                     gastoRepository.save(novoGasto);
                                 
                 }
-                im.setTipo('i');
+                info.setTipo('i');
                 rm.setMensagem("ops algo deu errado");
-                return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
+                return new ResponseEntity<Info>(infoRepository.save(info), HttpStatus.CREATED);
                 
             } else {
-                if(im.getValor() == 0) {
-                    im.setValor(im.getValordp() * im.getNdp());
+                if(info.getValor() == 0) {
+                    info.setValor(info.getValordp() * info.getNdp());
                 }
-                if(im.getValordp() == 0) {
-                    im.setValordp(im.getValor() / im.getNdp());
+                if(info.getValordp() == 0) {
+                    info.setValordp(info.getValor() / info.getNdp());
                 } 
                 int p = 0;
-                String motivoo = im.getMotivo();
-                LocalDate dataParcela = im.getDatac();
-                Info infoModelo = im;
+                String motivoo = info.getMotivo();
+                LocalDate dataParcela = info.getDatac();
+                Info infoModelo = info;
                 infoRepository.save(infoModelo);
 
-                for (int i = im.getNdp(); i > 0; i--) {
+                for (int i = info.getNdp(); i > 0; i--) {
                     p++;
-                    motivoo = im.getMotivo() +" "+ p + "/" + im.getNdp();
+                    motivoo = info.getMotivo() +" "+ p + "/" + info.getNdp();
                     dataParcela = dataParcela.plusMonths(1);
 
                     Gasto novoGasto = new Gasto();
                     novoGasto.setData(dataParcela);
                     novoGasto.setMotivo(motivoo);
-                    novoGasto.setValor(im.getValordp());
+                    novoGasto.setValor(info.getValordp());
                     novoGasto.setTipo('p');
-                    novoGasto.setInfo(im.getCodigoinf());
+                    novoGasto.setInfo(info.getCodigoinf());
 
                     gastoRepository.save(novoGasto);
                                 
                     }
-                    im.setTipo('i');
+                    info.setTipo('i');
                     rm.setMensagem("ops algo deu errado");
-                    return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
+                    return new ResponseEntity<Info>(infoRepository.save(info), HttpStatus.CREATED);
                 }
             }
         

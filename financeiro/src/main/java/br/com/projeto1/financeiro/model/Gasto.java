@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,5 +50,9 @@ public class Gasto {
     @JsonBackReference
     private FonteMes fontemes;
 
+    @JsonProperty("fontemes_id")
+    public String getFonteId() {
+        return this.fontemes != null ? this.fontemes.getId() : null;
+    }
     
 }
