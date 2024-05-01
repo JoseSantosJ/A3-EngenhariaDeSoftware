@@ -21,7 +21,7 @@ public interface GastoRepository extends CrudRepository<Gasto, Long>{
 
     Iterable<Gasto>  findByFonte(long fonte);
 
-    Iterable<Gasto> findByFontemes(FonteMes fontemes);
+    Gasto findByFontemesId(String fonteMesId);
 
     @Query("SELECT g FROM Gasto g WHERE g.fonte = 0")
     Iterable<Gasto> gastoSemFonte();

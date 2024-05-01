@@ -138,6 +138,11 @@ public class GastoService {
                 gastosModelo.setFonte(fonte.getCodigofonte());
                 gastosModelo.setFontemes(fonteMes);
                 gastoRepository.save(gastosModelo);
+                Gasto gastoFonteMes = gastoRepository.findByFontemesId(""+codigoFonte+mes+ano);
+                double valorFonteMes = fonteMesRepository.somaDosGastosMesEFonte(1, 4, 2024);
+                gastoFonteMes.setValor(valorFonteMes);
+                gastoRepository.save(gastoFonteMes);
+
                 fonteMesRepository.save(fonteMes);
 
                 return new ResponseEntity<Gasto>(gastoRepository.save(gastosModelo),HttpStatus.CREATED);  
@@ -157,6 +162,13 @@ public class GastoService {
 
         if (fonteMes == null) {
             Fonte fonte = fonteRepository.findById(codigoFonte).orElse(null);
+            Gasto gastoFonteMes = new Gasto();
+            LocalDate data = LocalDate.of(ano, mes, fonte.getDiadopagamento());
+            gastoFonteMes.setMotivo(fonte.getNomefonte());
+            gastoFonteMes.setTipo('f');
+            gastoFonteMes.setData(data);
+            
+            
 
             if (fonte != null) {
                 fonteMes = new FonteMes();
@@ -164,6 +176,8 @@ public class GastoService {
                 fonteMes.setNome(fonte.getNomefonte());
                 fonteMesRepository.save(fonteMes);
             }
+            gastoFonteMes.setFontemes(fonteMes);
+            gastoRepository.save(gastoFonteMes);
 
             
 

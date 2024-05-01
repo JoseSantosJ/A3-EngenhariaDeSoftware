@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.projeto1.financeiro.Repository.GastoRepository;
 import br.com.projeto1.financeiro.Repository.InfoRepository;
 import br.com.projeto1.financeiro.model.Gasto;
 import br.com.projeto1.financeiro.model.Info;
@@ -27,6 +28,8 @@ public class GastoController {
 
     @Autowired
     private GastoService gastoService;
+
+    private GastoRepository gastoRepository;
 
     @Autowired
     private InfoRepository infoRepository;
@@ -63,6 +66,11 @@ public class GastoController {
     @GetMapping("/{fonteMesId}")
     public Iterable<Info> listarInfoFonteMes(@PathVariable String fonteMesId){
         return infoRepository.findByFonteMes(fonteMesId);
+    }
+
+    @GetMapping("/{fonteMesId}")
+    public Gasto lista(@PathVariable String fonteMesId){
+        return gastoRepository.findByFontemesId(fonteMesId);
     }
 
 
