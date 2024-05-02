@@ -138,7 +138,7 @@ public class GastoService {
                 gastosModelo.setFonte(fonte.getCodigofonte());
                 gastosModelo.setFontemes(fonteMes);
                 gastoRepository.save(gastosModelo);
-                Gasto gastoFonteMes = gastoRepository.findByFontemesId(""+codigoFonte+mes+ano);
+                Gasto gastoFonteMes =  gastoRepository.findByFontemesId(""+codigoFonte+mes+ano);
                 double valorFonteMes = fonteMesRepository.somaDosGastosMesEFonte(1, 4, 2024);
                 gastoFonteMes.setValor(valorFonteMes);
                 gastoRepository.save(gastoFonteMes);

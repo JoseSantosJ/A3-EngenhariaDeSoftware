@@ -28,7 +28,7 @@ public class GastoController {
 
     @Autowired
     private GastoService gastoService;
-
+    @Autowired
     private GastoRepository gastoRepository;
 
     @Autowired
@@ -68,7 +68,7 @@ public class GastoController {
         return infoRepository.findByFonteMes(fonteMesId);
     }
 
-    @GetMapping("/{fonteMesId}")
+    @GetMapping("/f{fonteMesId}")
     public Gasto lista(@PathVariable String fonteMesId){
         return gastoRepository.findByFontemesId(fonteMesId);
     }
