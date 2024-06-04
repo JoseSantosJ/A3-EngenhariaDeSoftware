@@ -64,13 +64,8 @@ public class GastoController {
     }
 
     @GetMapping("/{fonteMesId}")
-    public Iterable<Info> listarInfoFonteMes(@PathVariable String fonteMesId){
-        return infoRepository.findByFonteMes(fonteMesId);
-    }
-
-    @GetMapping("/f{fonteMesId}")
-    public Gasto lista(@PathVariable String fonteMesId){
-        return gastoRepository.findByFontemesId(fonteMesId);
+    public Iterable<Gasto> lista(@PathVariable String fonteMesId){
+        return gastoRepository.listarGastosFonte(fonteMesId);
     }
 
 
@@ -124,9 +119,9 @@ public class GastoController {
         return gastoService.somaDosGastosPorMesEAno(mes, ano);
     }
     
-    @GetMapping("/somadafonte/{fonte}/{ano}/{mes}")
-    public Double somaDosGastosPorMesEFonte(@PathVariable long fonte,@PathVariable int ano, @PathVariable int mes){
-        return gastoService.somaDosGastosPorMesEFonte(fonte, mes, ano);
+    @GetMapping("/somadafonte/{fonteMesId}")
+    public Double somaDosGastosPorMesEFonte(@PathVariable String fonteMesId){
+        return gastoService.somaDosGastosPorMesEFonte(fonteMesId);
     }
     //_____________________________________________________________________________________________________________________
 

@@ -74,7 +74,7 @@ public class GastoService {
     public ResponseEntity<?> cadastrargasto (Gasto gm, String acao){
        
             if(gm.getData() == null){
-                rm.setMensagem("a data é obrigatorio!");
+                rm.setMensagem("a data é obrigatoria!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             }else if(gm.getMotivo().equals("")){
                 rm.setMensagem("o motivo é obrigatório!");
@@ -83,8 +83,9 @@ public class GastoService {
                 rm.setMensagem("o valor é obrigatorio!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             }else{
-                if(acao.equals("cadastrargasto")){
+                if(gm.getCodigo() == 0){
                     gm.setTipo('a');
+                    
                     return new ResponseEntity<Gasto>(gastoRepository.save(gm),HttpStatus.CREATED);
                 }else{
     
@@ -112,10 +113,23 @@ public class GastoService {
             Info infoModelo = new Info();
             
             if(acao.equals("cadastrargastocredito")){
-                int mes = (gastosModelo.getData().getMonthValue());
-                int ano = (gastosModelo.getData().getYear());
-                FonteMes fonteMes = GastosFonteMes(codigoFonte,mes,ano);
+
+                fonte = fonteRepository.findById(codigoFonte).orElse(null);
+
+                LocalDate diaDoPagamento;
+
                 infoModelo.setDatac(gastosModelo.getData());
+                
+                if(gastosModelo.getData().getDayOfMonth() >= fonte.getDialimite()){
+                    diaDoPagamento = gastosModelo.getData().plusMonths(2).withDayOfMonth(fonte.getDiadopagamento());
+                    gastosModelo.setData(infoModelo.getDatac());
+                }else {
+                    diaDoPagamento = gastosModelo.getData().plusMonths(1).withDayOfMonth(fonte.getDiadopagamento());
+                    gastosModelo.setData(infoModelo.getDatac());
+                }
+
+                FonteMes fonteMes = GastosFonteMes(codigoFonte, diaDoPagamento.getMonthValue(), diaDoPagamento.getYear());
+                
                 infoModelo.setValor(gastosModelo.getValor());
                 infoModelo.setMotivo(gastosModelo.getMotivo());
                 infoModelo.setValordp(gastosModelo.getValor());
@@ -124,24 +138,21 @@ public class GastoService {
                 infoModelo.setFonte(codigoFonte);
                 infoModelo.setFonteMes(fonteMes.getId());
                 infoRepository.save(infoModelo);
-                fonte = fonteRepository.findById(codigoFonte).orElse(null);
                 
-                if(gastosModelo.getData().getDayOfMonth() >= fonte.getDialimite()){
-                    
-                    gastosModelo.setData(gastosModelo.getData().plusMonths(2).withDayOfMonth(fonte.getDiadopagamento()));
-                }else {
-                    gastosModelo.setData(gastosModelo.getData().plusMonths(1).withDayOfMonth(fonte.getDiadopagamento()));
-                }
+
+                
                 
                 gastosModelo.setInfo(infoModelo.getCodigoinf());
                 gastosModelo.setTipo('c');
                 gastosModelo.setFonte(fonte.getCodigofonte());
                 gastosModelo.setFontemes(fonteMes);
                 gastoRepository.save(gastosModelo);
-                Gasto gastoFonteMes =  gastoRepository.findByFontemesId(""+codigoFonte+mes+ano);
-                double valorFonteMes = fonteMesRepository.somaDosGastosMesEFonte(1, 4, 2024);
+                Gasto gastoFonteMes =  gastoRepository.findByFontemesId(""+codigoFonte+diaDoPagamento.getMonthValue()+diaDoPagamento.getYear());
+                double valorFonteMes = fonteMesRepository.somaDosGastosMesEFonte(fonteMes.getId());
                 gastoFonteMes.setValor(valorFonteMes);
                 gastoRepository.save(gastoFonteMes);
+                infoModelo.setGastoId(gastoFonteMes.getCodigo());
+                infoRepository.save(infoModelo);
 
                 fonteMesRepository.save(fonteMes);
 
@@ -473,8 +484,8 @@ public class GastoService {
         return gastoRepository.somaDosGastosPorMesEAno(mes, ano);
     }
 
-    public Double somaDosGastosPorMesEFonte(Long fonte,int mes,int ano){
-        return fonteMesRepository.somaDosGastosMesEFonte(fonte, mes, ano);
+    public Double somaDosGastosPorMesEFonte(String id){
+        return fonteMesRepository.somaDosGastosMesEFonte(id);
     }
 
     //_____________________________________________________________________________________________________________________
