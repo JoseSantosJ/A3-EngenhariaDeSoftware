@@ -12,3 +12,19 @@ relacionamento de entidades
 
 ### Padrão MCV
 Utilizei o desenvolvimento em camadas na parte do backend
+
+ ## Features
+ 
+ ### Tela de Login
+      Especificações da tela de login
+      
+ ### Cadastro de Clientes
+      Especificações do  cadastro de Clientes
+      
+ # Instruções para Deploy
+ Baixe o projeto e execute os seguintes comandos no terminal.
+
+ cd projetof/financeiro
+ 
+  $ npm install
+  $ npm build
