@@ -23,8 +23,9 @@ Utilizei o desenvolvimento em camadas na parte do backend
       
  # Instruções para Deploy
  Baixe o projeto e execute os seguintes comandos no terminal.
-
- cd projetof/financeiro
  
+  ```bash
+ cd projetof/financeiro
   $ npm install
   $ npm build
+ ```
