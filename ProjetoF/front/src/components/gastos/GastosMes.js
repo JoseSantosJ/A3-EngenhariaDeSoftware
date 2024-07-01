@@ -213,6 +213,7 @@ function GastosMes() {
 
   return (
     <div>
+      <h1>Gastos por mês</h1>
       <label>Ano:</label>
       <select value={anoSelecionado} onChange={aoSelecionarAno}>
         <option value="">Selecione o Ano</option>

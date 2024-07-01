@@ -13,7 +13,7 @@ function App() {
     
     <div >
       <BrowserRouter>
-      <h1>Projeto F</h1>
+      <h1>Controlador Financeiro</h1>
       <ul>
         <li><Link to="">Tela inicial</Link></li>      
         <li><Link to="/telaDeCadastro">Gastos</Link>
