@@ -43,4 +43,6 @@ public class Info {
     private Long fonte;
 
     private String fonteMes;
+
+    private Long gastoId;
 }

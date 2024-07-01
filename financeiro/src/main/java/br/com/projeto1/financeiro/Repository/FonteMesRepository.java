@@ -21,6 +21,6 @@ public interface FonteMesRepository extends CrudRepository<FonteMes,String>{
     @Query("SELECT g FROM Gasto g WHERE g.fonte = :fonte AND MONTH(g.data) = :mes AND YEAR(g.data) = :ano")
     Iterable<Gasto> GastosMesEFonte(@Param("fonte") long fonte, @Param("mes") int mes, @Param("ano") int ano);
 
-    @Query("SELECT SUM(g.valor) FROM Gasto g WHERE g.fonte = :fonte AND MONTH(g.data) = :mes AND YEAR(g.data) = :ano")
-    Double somaDosGastosMesEFonte(@Param("fonte") long fonte, @Param("mes") int mes, @Param("ano") int ano);
+    @Query("SELECT SUM(g.valor) FROM Gasto g WHERE g.fontemes.id = :fontemesId AND g.tipo != 'f'")
+    Double somaDosGastosMesEFonte(@Param("fontemesId") String fonteMesId);
 }
