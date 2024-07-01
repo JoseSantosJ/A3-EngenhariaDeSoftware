@@ -10,7 +10,7 @@ Nesse projeto utilizei as seguintes técnicas
 relacionamento de entidades
 
 
-### Padrão MCV
+### Padrão MVC
 Utilizei o desenvolvimento em camadas na parte do backend
 
  ## Features
