@@ -16,7 +16,7 @@ Utilizei o desenvolvimento em camadas na parte do backend
  ## Features
  
  ### Tela de Cadastro de gasto avista
-     ![Blog](./assets/controlador.PNG?raw=true "Blog")
+     ![controlador](./assets/controlador.PNG?raw=true "controlador")
       
  ### Cadastro de Clientes
       Especificações do  cadastro de Clientes
