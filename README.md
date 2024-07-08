@@ -21,6 +21,7 @@ E o V se encontra dentro da parte
  
  ### Tela de cadastro de gasto avista ou entrada
       a tela de cadastro de gasto a vista ou entrada tem os campos de data valor e motivo
+      ![avista](./assets/Gastos.PNG?raw=true "avista")
       
  ### Tela de cadastro de gasto parcelado
       Especificações do  cadastro de Clientes
