@@ -37,7 +37,7 @@ E o V se encontra dentro da parte
  Baixe o projeto e execute os seguintes comandos no terminal.
  
   ```bash
- cd projetof/financeiro
+ cd projetof/front
   $ npm install
   $ npm build
  ```
