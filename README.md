@@ -15,8 +15,8 @@ relacionamento de entidades com many to one e one to many,
 ```bash
 associado com a estrutura de clean arquiteture utilizei o padrão MVC
 tendo as pastas model e service Representando o M (responsavel pelos dados e o processamento de dados)
-tendo a pasta Controller representado o C (responsvale pelas requisições e direcionamento )
-E o V se encontra dentro da pasta controller(que apresenta os dados que o usurio)
+tendo a pasta Controller representado o C (responsavel pelas requisições e direcionamento )
+E o V se encontra dentro da pasta controller(que apresenta os dados que o usurio usa/manipula)
 ```
 
  ## Features
