@@ -14,9 +14,9 @@ relacionamento de entidades com many to one e one to many,
 ### MVC
 ```bash
 associado com a estrutura de clean arquiteture utilizei o padrão MVC
-tendo a pasta model service Representando o M
-tendo a pasta Controller representado o C
-E o V se encontra dentro da parte
+tendo as pastas model e service Representando o M (responsavel pelos dados e o processamento de dados)
+tendo a pasta Controller representado o C (responsvale pelas requisições e direcionamento )
+E o V se encontra dentro da pasta controller(que apresenta os dados que o usurio)
 ```
 
  ## Features
@@ -31,7 +31,7 @@ E o V se encontra dentro da parte
  ![parceldo](./assets/Parcelado.PNG?raw=true "parceldo")
 
   ### Tela do GastoMes/EntraMes
-      as telas de GastosMes e EntradaMes
+      as telas de GastosMes e EntradaMes apresentam os gastos/receitas cadastradas naquele mês apresentando o tanto o total de gasto/receitas do mês como a diferença das movimentas registradas no corrente mês
  ![gastosmes](./assets/GastosMes.PNG?raw=true "gastosmes")
 
 
