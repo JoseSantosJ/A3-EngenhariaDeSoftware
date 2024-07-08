@@ -28,20 +28,15 @@ E o V se encontra dentro da parte
       preenchendo um dos campos de valor o outro é calculado automaticamente após clicar no botão cadastrar 
  ![parceldo](./assets/Parcelado.PNG?raw=true "parceldo")
 
+  ### Tela do GastoMes/EntraMes
+      a tela de cadastro de gasto parcelado tem os campos de data da compra, valor da parcela, motivo e valor total.
+      preenchendo um dos campos de valor o outro é calculado automaticamente após clicar no botão cadastrar 
+ ![gastosmes](./assets/GastosMes.PNG?raw=true "gastosmes")
+
 
 # Instruções para utilização do aplicativo Web
  acesse o link https://fronta3.onrender.com
  
   ```bash
      atualmente back end necessita de 1-3 minutos para iniciar
- ```
-
-      
- # Instruções para Deploy
- Baixe o projeto e execute os seguintes comandos no terminal.
- 
-  ```bash
- cd projetof/front
-  $ npm install
-  $ npm build
  ```
