@@ -31,7 +31,8 @@ E o V se encontra dentro da pasta controller(que apresenta os dados que o usurio
  ![parceldo](./assets/Parcelado.PNG?raw=true "parceldo")
 
   ### Tela do GastoMes/EntraMes
-      as telas de GastosMes e EntradaMes apresentam os gastos/receitas cadastradas naquele mês apresentando o tanto o total de gasto/receitas do mês como a diferença das movimentas registradas no corrente mês
+      as telas de GastosMes e EntradaMes apresentam os gastos/receitas cadastradas naquele mês.
+      apresentando tanto total de gasto/receitas do mês como a diferença das movimentas registradas no corrente mês
  ![gastosmes](./assets/GastosMes.PNG?raw=true "gastosmes")
 
 
