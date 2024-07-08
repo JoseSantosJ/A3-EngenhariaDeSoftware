@@ -12,10 +12,12 @@ relacionamento de entidades com many to one e one to many,
 
 
 ### Padrão MCV
+```bash
 associado com a estrutura de clean arquiteture utilizei o padrão MVC
 tendo a pasta model Representando o M
 tendo as pasta service e Controller representado o C
 E o V se encontra dentro da parte
+```
 
  ## Features
  
