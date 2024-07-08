@@ -1,5 +1,3 @@
-//controle esta controlando as rotas(endereço)
-
 package br.com.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,32 +35,62 @@ public class GastoController {
 
 
     // Listar
+    /**
+     * Metodo para Listar todos os Gastos registrados
+     * @return retorna todos os gastos registrados
+     */
     @GetMapping("")
     public Iterable<Gasto> listar(){
         return gastoService.listargastos();
     }
 
+    /**
+     * metodo para listar Gastos cadastrados em uma fonte especifica
+     * @param fonte (codigofonte da fonte que esta sendo requisitado os gastos)
+     * @return retorna todos os gastos registrado na fonte requisitada
+     */
     @GetMapping("/fonte/{fonte}")
     public Iterable<Gasto> listarPorFonte(@PathVariable Long fonte){
         return gastoService.listarGastosPorFonte(fonte);
     }
 
-    // Endpoint para listar gastos por mês e ano
+    /**
+     * Metodo para listar os gasto de um determinado mês
+     * @param ano (ano que esta sendo requisitado o mês)
+     * @param mes (o mês especifico do qual se quer saber os gastos) 
+     * @return retorna todos os gastos registrado no mês requisitado
+     */
     @GetMapping("/{ano}/{mes}")
     public Iterable<Gasto> listarPorMesEAno(@PathVariable int ano, @PathVariable int mes) {
         return gastoService.listargastosPorMesEAno(mes, ano);
     }
 
+    /**
+     * metodo para listar todos os gastos de uma fonte em um mês especifico
+     * @param fonte codigoFonte da fonte que se deseja obter os gastos
+     * @param ano ano em que se encontra o mês desejado
+     * @param mes mes que se deseja obter os gastos
+     * @return retorna todos os gastos da fonte no mês solicitado
+     */
     @GetMapping("/fontes/{fonte}/{ano}/{mes}")
     public Iterable<Gasto> listarGastosPorFonteEMes(@PathVariable long fonte,@PathVariable int ano, @PathVariable int mes){
         return gastoService.listarGastosPorMesEFonte(fonte, mes, ano);
     }
 
+    /**
+     * metodo para listar os gastos que não possuem fontes
+     * @return retorna todos os gastos que tem codigoFonte igual a zero
+     */
     @GetMapping("/semfontes")
     public Iterable<Gasto> listarGastosSemFonte(){
         return gastoService.listarGastosSemFontes();
     }
 
+    /**
+     * 
+     * @param fonteMesId
+     * @return
+     */
     @GetMapping("/{fonteMesId}")
     public Iterable<Gasto> lista(@PathVariable String fonteMesId){
         return gastoRepository.listarGastosFonte(fonteMesId);
@@ -73,12 +101,10 @@ public class GastoController {
     //_____________________________________________________________________________________________________________________
 
     //cadastrar
-    //metodo post é para cadastrar
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@RequestBody Gasto gm){
         return gastoService.cadastrargasto(gm, "cadastrargasto");
     }
-    //metodo post é para cadastrar
     @PostMapping("/cadastrarparcelamento")
     public ResponseEntity<?> cadastrargastoparcelado(@RequestBody Info im){
         return gastoService.cadastrargastoparcelado(im, "cadastrargastoparcelado");

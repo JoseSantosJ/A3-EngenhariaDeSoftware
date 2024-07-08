@@ -43,25 +43,49 @@ public class GastoService {
 
     /*metodos para listar */
 
-    //metodo para listar todos os gastos
+    /**
+     * metodo para listar todos os gastos
+     * @return retorna todos os gastos registrados
+     */
     public Iterable<Gasto> listargastos(){
         return gastoRepository.findByOrderByData();//gastoRepository.findAll();
     }
 
+    /**
+     * metodo para listar todos os gastos registrados em uma fonte especifica
+     * @param fonte codigofonte da fonte que se deseja obter os gastos
+     * @return retorna todos os gastos que tem como codigofonte o numero fornecida
+     */
     public Iterable<Gasto> listarGastosPorFonte(Long fonte){
         return gastoRepository.findByFonte(fonte);
     }
 
+    /**
+     * metodo para listar todos os gastos registrados em uma fonte em um mês especifico
+     * @param fonte codigofonte da fonte que se deseja obter os gastos cadastrados
+     * @param mes numero do mês que se deseja obter os gastos cadastrados
+     * @param ano ano que se deseja obter os gastos cadastrados
+     * @return retorna todos os gastos que possuem o codigofonte igual ao Long fornecida e no ano e mês requisitados
+     */
     public Iterable<Gasto> listarGastosPorMesEFonte(Long fonte,int mes,int ano){
         return fonteMesRepository.GastosMesEFonte(fonte, mes, ano);
     }
 
 
-    // Método para listar gastos por mês e ano
+    /**
+     * Método para listar gastos por mês e ano
+     * @param mes numero do mês que se deseja obter os gastos cadastrados
+     * @param ano ano que se deseja obter os gastos cadastrados
+     * @return retorna todos os gastos no ano e mês requisitados
+     */
     public Iterable<Gasto> listargastosPorMesEAno(int mes, int ano) {
         return gastoRepository.findByMesEAno(mes, ano);
     }
 
+    /**
+     * metodo para listar todos os gastos sem fontes
+     * @return retorna todos os gastos que tem codigoFonte igual a zero
+     */
     public Iterable<Gasto>listarGastosSemFontes(){
         return gastoRepository.gastoSemFonte();
     }
@@ -70,26 +94,31 @@ public class GastoService {
 
     /*metodos para cadastrar */
 
-    //metodo para cadastrar ou alterar gastos
-    public ResponseEntity<?> cadastrargasto (Gasto gm, String acao){
+    /**
+     * metodo para cadastrar ou alterar Gastos
+     * @param gasto gasto que se deseja cadastrar 
+     * @param acao ação que sera exercida .:"cadastrar" ; "alterar"
+     * @return retorna o status da requisição
+     */
+    public ResponseEntity<?> cadastrargasto (Gasto gasto, String acao){
        
-            if(gm.getData() == null){
+            if(gasto.getData() == null){
                 rm.setMensagem("a data é obrigatoria!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-            }else if(gm.getMotivo().equals("")){
+            }else if(gasto.getMotivo().equals("")){
                 rm.setMensagem("o motivo é obrigatório!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-            } else if(gm.getValor() == 0){
+            } else if(gasto.getValor() == 0){
                 rm.setMensagem("o valor é obrigatorio!");
                 return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             }else{
-                if(gm.getCodigo() == 0){
-                    gm.setTipo('a');
+                if(gasto.getCodigo() == 0){
+                    gasto.setTipo('a');
                     
-                    return new ResponseEntity<Gasto>(gastoRepository.save(gm),HttpStatus.CREATED);
+                    return new ResponseEntity<Gasto>(gastoRepository.save(gasto),HttpStatus.CREATED);
                 }else{
     
-                    return new ResponseEntity<Gasto>(gastoRepository.save(gm),HttpStatus.OK);
+                    return new ResponseEntity<Gasto>(gastoRepository.save(gasto),HttpStatus.OK);
                 }
                 
             }
@@ -97,16 +126,22 @@ public class GastoService {
         
     }
 
-    //metodo para cadastrar ou alterar gastos no credito
-    public ResponseEntity<?> cadastrargastocredito (Gasto gastosModelo,Long codigoFonte, String acao){
+    /**
+     * metodo para cadastrar ou alterar gastos no credito
+     * @param gasto gasto que se deseja cadastrar 
+     * @param codigoFonte codigoFonte da fonte na qual se quer cadastrar o gasto
+     * @param acao ação que sera exercida .:"cadastrar" ; "alterar"
+     * @return retorna o status da requisição
+     */
+    public ResponseEntity<?> cadastrargastocredito (Gasto gasto,Long codigoFonte, String acao){
        
-        if(gastosModelo.getData() == null){
+        if(gasto.getData() == null){
             rm.setMensagem("a data  da compra é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        }else if(gastosModelo.getMotivo().equals("")){
+        }else if(gasto.getMotivo().equals("")){
             rm.setMensagem("o motivo é obrigatório!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        } else if(gastosModelo.getValor() == 0){
+        } else if(gasto.getValor() == 0){
             rm.setMensagem("o valor é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
         }else{
@@ -118,21 +153,21 @@ public class GastoService {
 
                 LocalDate diaDoPagamento;
 
-                infoModelo.setDatac(gastosModelo.getData());
+                infoModelo.setDatac(gasto.getData());
                 
-                if(gastosModelo.getData().getDayOfMonth() >= fonte.getDialimite()){
-                    diaDoPagamento = gastosModelo.getData().plusMonths(2).withDayOfMonth(fonte.getDiadopagamento());
-                    gastosModelo.setData(infoModelo.getDatac());
+                if(gasto.getData().getDayOfMonth() >= fonte.getDialimite()){
+                    diaDoPagamento = gasto.getData().plusMonths(2).withDayOfMonth(fonte.getDiadopagamento());
+                    gasto.setData(infoModelo.getDatac());
                 }else {
-                    diaDoPagamento = gastosModelo.getData().plusMonths(1).withDayOfMonth(fonte.getDiadopagamento());
-                    gastosModelo.setData(infoModelo.getDatac());
+                    diaDoPagamento = gasto.getData().plusMonths(1).withDayOfMonth(fonte.getDiadopagamento());
+                    gasto.setData(infoModelo.getDatac());
                 }
 
                 FonteMes fonteMes = GastosFonteMes(codigoFonte, diaDoPagamento.getMonthValue(), diaDoPagamento.getYear());
                 
-                infoModelo.setValor(gastosModelo.getValor());
-                infoModelo.setMotivo(gastosModelo.getMotivo());
-                infoModelo.setValordp(gastosModelo.getValor());
+                infoModelo.setValor(gasto.getValor());
+                infoModelo.setMotivo(gasto.getMotivo());
+                infoModelo.setValordp(gasto.getValor());
                 infoModelo.setNdp(1);
                 infoModelo.setTipo('i');
                 infoModelo.setFonte(codigoFonte);
@@ -142,11 +177,11 @@ public class GastoService {
 
                 
                 
-                gastosModelo.setInfo(infoModelo.getCodigoinf());
-                gastosModelo.setTipo('c');
-                gastosModelo.setFonte(fonte.getCodigofonte());
-                gastosModelo.setFontemes(fonteMes);
-                gastoRepository.save(gastosModelo);
+                gasto.setInfo(infoModelo.getCodigoinf());
+                gasto.setTipo('c');
+                gasto.setFonte(fonte.getCodigofonte());
+                gasto.setFontemes(fonteMes);
+                gastoRepository.save(gasto);
                 Gasto gastoFonteMes =  gastoRepository.findByFontemesId(""+codigoFonte+diaDoPagamento.getMonthValue()+diaDoPagamento.getYear());
                 double valorFonteMes = fonteMesRepository.somaDosGastosMesEFonte(fonteMes.getId());
                 gastoFonteMes.setValor(valorFonteMes);
@@ -156,7 +191,7 @@ public class GastoService {
 
                 fonteMesRepository.save(fonteMes);
 
-                return new ResponseEntity<Gasto>(gastoRepository.save(gastosModelo),HttpStatus.CREATED);  
+                return new ResponseEntity<Gasto>(gastoRepository.save(gasto),HttpStatus.CREATED);  
             }else{
                 return new ResponseEntity<Info>(infoRepository.save(infoModelo),HttpStatus.OK);
             }
@@ -167,6 +202,13 @@ public class GastoService {
     
     }
 
+    /**
+     * metodo para verificar se há Gastos cadastrado na fonte em um mês especifico
+     * @param codigoFonte codigoFonte da fonte que se deseja verificar
+     * @param mes mês que se deseja verificar
+     * @param ano ano em que se deseja verificar
+     * @return retorna uma FonteMes
+     */
     public FonteMes GastosFonteMes(long codigoFonte, int mes, int ano){
         String id = (""+codigoFonte+mes+ano);
         FonteMes fonteMes = fonteMesRepository.findById(id).orElse(null);
@@ -226,7 +268,13 @@ public class GastoService {
         }*/
 
     }
-    //metodo para cadastrar ou alterar gastos parcelados
+    
+    /**
+     * metodo para cadastrar ou alterar gastos parcelados
+     * @param info informação sobre o gasto parcelado que se deseja cadastrar
+     * @param acao ação que sera exercida .:"cadastrar" ; "alterar"
+     * @return retorna o status da requisição
+     */
     public ResponseEntity<?> cadastrargastoparcelado (Info info, String acao ){
         
        
@@ -322,96 +370,102 @@ public class GastoService {
 }
 
 
-    //metodo para cadastrar ou alterar gastos
-    public ResponseEntity<?> cadastrocreditoparcelado (Info im, String acao ){
+    /**
+     * metodo para cadastrar ou alterar gastos parcelados com fonte
+     * @param info informação sobre o gasto parcelado que se deseja cadastrar
+     * @param acao acao ação que sera exercida .:"cadastrar" ; "alterar"
+     * @param fonte codigoFonte da fonte na qual se quer cadastrar os gastos
+     * @return retorna o status da requisição
+     */
+    public ResponseEntity<?> cadastrocreditoparcelado (Info info, String acao ){
     
    
-        if(im.getDatac() == null){
+        if(info.getDatac() == null){
             rm.setMensagem("a data da compra é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        }else if(im.getDatac() == null){
+        }else if(info.getDatac() == null){
             rm.setMensagem("a data do pagamento é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
         }
-        else if(im.getMotivo().equals("")){
+        else if(info.getMotivo().equals("")){
             rm.setMensagem("o motivo é obrigatório!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        }else if(im.getValordp() == 0 && (im.getValor() == 0 || im.getNdp() == 0)){
+        }else if(info.getValordp() == 0 && (info.getValor() == 0 || info.getNdp() == 0)){
             
             
             rm.setMensagem("o valor da parcela ou valor total é obrigatorio!1");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
             
-        } else if(im.getValor() == 0 && (im.getValordp() == 0 || im.getNdp() == 0)){
+        } else if(info.getValor() == 0 && (info.getValordp() == 0 || info.getNdp() == 0)){
             rm.setMensagem("o valor total ou o valor da parcela é obrigatorio!2");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
-        }else if(im.getNdp() == 0){
+        }else if(info.getNdp() == 0){
             rm.setMensagem("o valor da parcela é obrigatorio!");
             return new ResponseEntity<Resposta>(rm,HttpStatus.BAD_REQUEST);
         }else{
             if (acao.equals("cadastrargastoparcelado")) {
-                if(im.getValor() == 0) {
-                    im.setValor(im.getValordp() * im.getNdp());
+                if(info.getValor() == 0) {
+                    info.setValor(info.getValordp() * info.getNdp());
                 }
-                if(im.getValordp() == 0) {
-                    im.setValordp(im.getValor() / im.getNdp());
+                if(info.getValordp() == 0) {
+                    info.setValordp(info.getValor() / info.getNdp());
                 }
                 int p = 0;
-                String motivoo = im.getMotivo();
-                LocalDate dataParcela = im.getDatac();
-                Info infoModelo = im;
+                String motivoo = info.getMotivo();
+                LocalDate dataParcela = info.getDatac();
+                Info infoModelo = info;
                 infoRepository.save(infoModelo);
 
-                for (int i = im.getNdp(); i > 0; i--) {
+                for (int i = info.getNdp(); i > 0; i--) {
                     p++;
-                    motivoo = im.getMotivo()+" " + p + "/" + im.getNdp();
+                    motivoo = info.getMotivo()+" " + p + "/" + info.getNdp();
                     dataParcela = dataParcela.plusMonths(1);
                     
                     Gasto novoGasto = new Gasto();
                     novoGasto.setData(dataParcela);
                     novoGasto.setMotivo(motivoo);
-                    novoGasto.setValor(im.getValordp()); 
+                    novoGasto.setValor(info.getValordp()); 
                     novoGasto.setTipo('p');
-                    novoGasto.setInfo(im.getCodigoinf());
+                    novoGasto.setInfo(info.getCodigoinf());
 
                     gastoRepository.save(novoGasto);
                                 
                 }
-                im.setTipo('i');
+                info.setTipo('i');
                 rm.setMensagem("ops algo deu errado");
-                return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
+                return new ResponseEntity<Info>(infoRepository.save(info), HttpStatus.CREATED);
                 
             } else {
-                if(im.getValor() == 0) {
-                    im.setValor(im.getValordp() * im.getNdp());
+                if(info.getValor() == 0) {
+                    info.setValor(info.getValordp() * info.getNdp());
                 }
-                if(im.getValordp() == 0) {
-                    im.setValordp(im.getValor() / im.getNdp());
+                if(info.getValordp() == 0) {
+                    info.setValordp(info.getValor() / info.getNdp());
                 } 
                 int p = 0;
-                String motivoo = im.getMotivo();
-                LocalDate dataParcela = im.getDatac();
-                Info infoModelo = im;
+                String motivoo = info.getMotivo();
+                LocalDate dataParcela = info.getDatac();
+                Info infoModelo = info;
                 infoRepository.save(infoModelo);
 
-                for (int i = im.getNdp(); i > 0; i--) {
+                for (int i = info.getNdp(); i > 0; i--) {
                     p++;
-                    motivoo = im.getMotivo() +" "+ p + "/" + im.getNdp();
+                    motivoo = info.getMotivo() +" "+ p + "/" + info.getNdp();
                     dataParcela = dataParcela.plusMonths(1);
 
                     Gasto novoGasto = new Gasto();
                     novoGasto.setData(dataParcela);
                     novoGasto.setMotivo(motivoo);
-                    novoGasto.setValor(im.getValordp());
+                    novoGasto.setValor(info.getValordp());
                     novoGasto.setTipo('p');
-                    novoGasto.setInfo(im.getCodigoinf());
+                    novoGasto.setInfo(info.getCodigoinf());
 
                     gastoRepository.save(novoGasto);
                                 
                     }
-                    im.setTipo('i');
+                    info.setTipo('i');
                     rm.setMensagem("ops algo deu errado");
-                    return new ResponseEntity<Info>(infoRepository.save(im), HttpStatus.CREATED);
+                    return new ResponseEntity<Info>(infoRepository.save(info), HttpStatus.CREATED);
                 }
             }
     } 
@@ -433,7 +487,11 @@ public class GastoService {
 
     /*metodos para remover */
 
-    //metodo para remover gastos
+    /**
+     * metodo para remover gastos
+     * @param codigo codigo do gasto que se deseja remover
+     * @return retorna o status da requisição
+     */
     public ResponseEntity<Resposta> removergasto(long codigo){
         Gasto gm = gastoRepository.findById(codigo).orElse(null);
 
@@ -473,17 +531,30 @@ public class GastoService {
     /*metodos para somar */
 
 
-
+    /**
+     * metodo para somar todos os gastos
+     * @return retorna o valor total de todos os gastos cadastrados
+     */
     public double somaDosGastos(){
         return gastoRepository.somaDosGastos();
     }
 
 
-    // Método para obter a soma dos gastos por mês e ano
+    /**
+     * Método para obter a soma dos gastos por mês e ano
+     * @param mes mês que se deseja obter a soma
+     * @param ano ano que se deseja obter a soma
+     * @return retorna o valor total de todos os gastos cadastrado no mês informado
+     */
     public Double somaDosGastosPorMesEAno(int mes, int ano) {
         return gastoRepository.somaDosGastosPorMesEAno(mes, ano);
     }
 
+    /**
+     * Método para obter a soma de todos os gastos cadastrado na fonte e no mês informado
+     * @param id id da fonteMes desejado
+     * @return retorna o valor dos total dos gastos cadastrados na fonte e mês informados
+     */
     public Double somaDosGastosPorMesEFonte(String id){
         return fonteMesRepository.somaDosGastosMesEFonte(id);
     }

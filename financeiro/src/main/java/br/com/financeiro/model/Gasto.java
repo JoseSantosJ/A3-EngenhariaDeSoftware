@@ -17,7 +17,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-
+/**
+ * entidade gasto
+ * @param codigo id do gasto
+ * @param valor valor do gasto
+ * @param motivo nome do objeto comprado,causa do gasto,ocasião, ...
+ * @param data data da compra/pagamento
+ * @param tipo tipo de gasto(avista,credito,parcelado)
+ * @param info id da info(caso o gasto seja do tipo credito ou parcelado)
+ * @param fonte id da fonte(caso o gasto seja do tipo credito)
+ * @param fontemes id da fontemes(caso gasto seja do tipo credito)
+ */
 @Entity
 @Table(name = "Gastos")
 @Getter
