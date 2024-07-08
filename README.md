@@ -30,6 +30,7 @@ E o V se encontra dentro da parte
  
   ```bash
      atualmente back end necessita de 1-3 minutos para iniciar
+     mas a
  ```
 
       
