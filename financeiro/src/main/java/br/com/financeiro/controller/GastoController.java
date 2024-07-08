@@ -19,6 +19,9 @@ import br.com.financeiro.model.Info;
 import br.com.financeiro.model.Resposta;
 import br.com.financeiro.service.GastoService;
 
+/**
+ * classe responsavel pela requisição e redirecionamentos relacionado aos gastos
+ */
 @RestController
 @RequestMapping("/gastos")
 @CrossOrigin("*")
