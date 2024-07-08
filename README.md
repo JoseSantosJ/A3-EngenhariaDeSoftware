@@ -11,11 +11,11 @@ Nesse projeto utilizei as seguintes técnicas
 relacionamento de entidades com many to one e one to many,
 
 
-### Padrão MCV
+### MVC
 ```bash
 associado com a estrutura de clean arquiteture utilizei o padrão MVC
-tendo a pasta model Representando o M
-tendo as pasta service e Controller representado o C
+tendo a pasta model service Representando o M
+tendo a pasta Controller representado o C
 E o V se encontra dentro da parte
 ```
 
@@ -31,8 +31,7 @@ E o V se encontra dentro da parte
  ![parceldo](./assets/Parcelado.PNG?raw=true "parceldo")
 
   ### Tela do GastoMes/EntraMes
-      a tela de cadastro de gasto parcelado tem os campos de data da compra, valor da parcela, motivo e valor total.
-      preenchendo um dos campos de valor o outro é calculado automaticamente após clicar no botão cadastrar 
+      as telas de GastosMes e EntradaMes
  ![gastosmes](./assets/GastosMes.PNG?raw=true "gastosmes")
 
 
