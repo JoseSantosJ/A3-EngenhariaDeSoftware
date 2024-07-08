@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.model;
+package br.com.financeiro.model;
 
 import org.springframework.stereotype.Component;
 

@@ -1,13 +1,13 @@
-package br.com.projeto1.financeiro.service;
+package br.com.financeiro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.Repository.EntradaRepository;
-import br.com.projeto1.financeiro.model.Entrada;
-import br.com.projeto1.financeiro.model.Resposta;
+import br.com.financeiro.Repository.EntradaRepository;
+import br.com.financeiro.model.Entrada;
+import br.com.financeiro.model.Resposta;
 @Service
 public class EntradaService {
     

@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.Repository;
+package br.com.financeiro.Repository;
 
 import java.util.Optional;
 
@@ -7,8 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import br.com.projeto1.financeiro.model.FonteMes;
-import br.com.projeto1.financeiro.model.Gasto;
+import br.com.financeiro.model.FonteMes;
+import br.com.financeiro.model.Gasto;
 
 
 

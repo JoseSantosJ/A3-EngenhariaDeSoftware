@@ -1,6 +1,6 @@
 //controle esta controlando as rotas(endereço)
 
-package br.com.projeto1.financeiro.controller;
+package br.com.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.Repository.GastoRepository;
-import br.com.projeto1.financeiro.Repository.InfoRepository;
-import br.com.projeto1.financeiro.model.Gasto;
-import br.com.projeto1.financeiro.model.Info;
-import br.com.projeto1.financeiro.model.Resposta;
-import br.com.projeto1.financeiro.service.GastoService;
+import br.com.financeiro.Repository.GastoRepository;
+import br.com.financeiro.Repository.InfoRepository;
+import br.com.financeiro.model.Gasto;
+import br.com.financeiro.model.Info;
+import br.com.financeiro.model.Resposta;
+import br.com.financeiro.service.GastoService;
 
 @RestController
 @RequestMapping("/gastos")

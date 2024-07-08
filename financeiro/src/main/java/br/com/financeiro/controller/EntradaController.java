@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.controller;
+package br.com.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.model.Entrada;
-import br.com.projeto1.financeiro.model.Resposta;
-import br.com.projeto1.financeiro.service.EntradaService;
+import br.com.financeiro.model.Entrada;
+import br.com.financeiro.model.Resposta;
+import br.com.financeiro.service.EntradaService;
 
 @RestController
 @RequestMapping("/entradas")

@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.controller;
+package br.com.financeiro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.model.Fonte;
-import br.com.projeto1.financeiro.service.FonteService;
+import br.com.financeiro.model.Fonte;
+import br.com.financeiro.service.FonteService;
 
 @RestController
 @RequestMapping("/fontes")

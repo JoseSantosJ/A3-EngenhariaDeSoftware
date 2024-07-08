@@ -1,6 +1,6 @@
 //essa classe determina serviços como cadastrar, alterar,remover, e retorno sobre o serviço prestado
 
-package br.com.projeto1.financeiro.service;
+package br.com.financeiro.service;
 
 import java.time.LocalDate;
 
@@ -9,15 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.Repository.FonteMesRepository;
-import br.com.projeto1.financeiro.Repository.FonteRepository;
-import br.com.projeto1.financeiro.Repository.GastoRepository;
-import br.com.projeto1.financeiro.Repository.InfoRepository;
-import br.com.projeto1.financeiro.model.Fonte;
-import br.com.projeto1.financeiro.model.FonteMes;
-import br.com.projeto1.financeiro.model.Gasto;
-import br.com.projeto1.financeiro.model.Info;
-import br.com.projeto1.financeiro.model.Resposta;
+import br.com.financeiro.Repository.FonteMesRepository;
+import br.com.financeiro.Repository.FonteRepository;
+import br.com.financeiro.Repository.GastoRepository;
+import br.com.financeiro.Repository.InfoRepository;
+import br.com.financeiro.model.Fonte;
+import br.com.financeiro.model.FonteMes;
+import br.com.financeiro.model.Gasto;
+import br.com.financeiro.model.Info;
+import br.com.financeiro.model.Resposta;
 
 @Service
 public class GastoService {

@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.controller;
+package br.com.financeiro.controller;
 
 import java.util.Optional;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto1.financeiro.Repository.FonteMesRepository;
-import br.com.projeto1.financeiro.model.FonteMes;
+import br.com.financeiro.Repository.FonteMesRepository;
+import br.com.financeiro.model.FonteMes;
 
 @RestController
 @RequestMapping("/fontesMes")

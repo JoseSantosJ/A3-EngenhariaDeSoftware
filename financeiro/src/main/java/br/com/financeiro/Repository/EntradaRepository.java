@@ -1,11 +1,11 @@
-package br.com.projeto1.financeiro.Repository;
+package br.com.financeiro.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import br.com.projeto1.financeiro.model.Entrada;
+import br.com.financeiro.model.Entrada;
 
 @Repository
 public interface EntradaRepository extends CrudRepository<Entrada, Long>{

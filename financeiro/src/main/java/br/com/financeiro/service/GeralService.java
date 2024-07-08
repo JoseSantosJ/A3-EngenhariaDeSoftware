@@ -1,10 +1,10 @@
-package br.com.projeto1.financeiro.service;
+package br.com.financeiro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto1.financeiro.Repository.EntradaRepository;
-import br.com.projeto1.financeiro.Repository.GastoRepository;
+import br.com.financeiro.Repository.EntradaRepository;
+import br.com.financeiro.Repository.GastoRepository;
 
 @Service
 public class GeralService {

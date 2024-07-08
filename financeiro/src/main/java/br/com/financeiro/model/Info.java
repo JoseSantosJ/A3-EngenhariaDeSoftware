@@ -1,4 +1,4 @@
-package br.com.projeto1.financeiro.model;
+package br.com.financeiro.model;
 
 import java.time.LocalDate;
 
@@ -14,17 +14,35 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Entradas")
+@Table(name = "Info")
 @Getter
 @Setter
-public class Entrada {
+public class Info {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
+    private long codigoinf;
+
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate data;
+    private LocalDate datac;
+
     @Column(columnDefinition = "DECIMAL(10,2)")
     private double valor;
+
     private String motivo;
-    
+
+    //valor da parcela
+    @Column(columnDefinition = "DECIMAL(10,2)")
+    private double valordp;
+
+    //numero de parcelas
+    private int ndp;
+
+    //tipo
+    private char tipo;
+
+    private Long fonte;
+
+    private String fonteMes;
+
+    private Long gastoId;
 }

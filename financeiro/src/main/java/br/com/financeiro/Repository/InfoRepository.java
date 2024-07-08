@@ -1,10 +1,10 @@
-package br.com.projeto1.financeiro.Repository;
+package br.com.financeiro.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.projeto1.financeiro.model.Info;
+import br.com.financeiro.model.Info;
 
 
 
