@@ -24,7 +24,7 @@ E o V se encontra dentro da parte
   ![avista](./assets/Gastos.PNG?raw=true "avista")
       
  ### Tela de cadastro de gasto parcelado
-      a tela de cadastro de gasto parcelado tem os campos de data da compra, valor total, motivo e valor da parcela.
+      a tela de cadastro de gasto parcelado tem os campos de data da compra, valor da parcela, motivo e valor total.
       preenchendo um dos campos de valor o outro é calculado automaticamente após clicar no botão cadastrar 
  ![parceldo](./assets/Parcelado.PNG?raw=true "parceldo")
 
