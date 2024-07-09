@@ -8,7 +8,7 @@ O projeto Controlador financeiro tem o como objetivo Auxiliar no gerenciamento d
 Nesse projeto utilizei as seguintes técnicas
 
 ### modelgem de dados
-relacionamento de entidades com many to one e one to many,
+nesse projeto foram utilizados varios tipos de relacionamento de entidades dentre eles many to one e one to many,
 
 
 ### MVC
