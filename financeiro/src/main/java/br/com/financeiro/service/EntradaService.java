@@ -18,26 +18,48 @@ public class EntradaService {
     @Autowired
     private Resposta rm;
 
-    //metodo para listar todos as entradas
+    /**
+     * lista todos as receitas
+     * @return retorna todas as entradas cadastradas
+     */
     public Iterable<Entrada> listarentrada(){
         return entradaRepository.findByOrderByData();
     }
 
-    // Método para listar gastos por mês e ano
+    /**
+     * lista as receitascadastradas no mês e ano especificado
+     * @param mes mês que se deseja verificar
+     * @param ano ano que se deseja verificar
+     * @return retorna as receitas cadastradas no mês e ano informados
+     */
     public Iterable<Entrada> listarEntradasPorMesEAno(int mes, int ano) {
         return entradaRepository.findByMesEAno(mes, ano);
     }
 
+    /**
+     * apresenta o valor da soma de todas as receitas cadastradas
+     * @return retorna a soma dos valores das receitas cadastradas
+     */
     public double somadasentradas(){
         return entradaRepository.somadasentradas();
     }
 
-    // Método para obter a soma dos gastos por mês e ano
+    /**
+     * retorna o valor da soma das receitas do mês do ano requisitado
+     * @param mes mês que se deseja verificar
+     * @param ano ano do mês que se deseja verificar
+     * @return retorna o valor da soma das receitas no mês requisitada
+     */
     public Double somaDasEntradasPorMesEAno(int mes, int ano) {
         return entradaRepository.somaDasEntradasPorMesEAno(mes, ano);
     }
 
-    //metodo para cadastrar ou alterar entradas
+    /**
+     * cadastra ou altera uma nova receita
+     * @param entrada receita que se deseja cadastrar/alterar
+     * @param acao ação a ser executada .: "cadastrar"; "alterar"
+     * @return retorna o status da requisição
+     */
     public ResponseEntity<?> cadastrarentrada (Entrada entrada, String acao){
         if(entrada.getData() == null){
             rm.setMensagem("a data é obrigatorio!");
@@ -58,7 +80,11 @@ public class EntradaService {
         
     }
 
-    //metodo para remover entradas
+    /**
+     * remove uma receita
+     * @param codigo codigo da entrada
+     * @return retorna status da requisiçãoo
+     */
     public ResponseEntity<Resposta> removerentrada(long codigo){
         entradaRepository.deleteById(codigo);
 

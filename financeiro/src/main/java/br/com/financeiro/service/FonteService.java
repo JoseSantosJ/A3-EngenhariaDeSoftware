@@ -17,7 +17,12 @@ public class FonteService {
     @Autowired
     Resposta rm;
 
-    //metodo para cadastrar ou alterar Fontes
+    /**
+     * cadastra ou altera uma Fontes
+     * @param fonte fonte que se deseja cadastrar ou alterar
+     * @param acao ação que se deseja exercer .: cadastrar,alterar
+     * @return
+     */
     public ResponseEntity<?> cadastrarfonte (Fonte fonte, String acao){
        
             if(fonte.getNomefonte().equals("")){
@@ -42,7 +47,10 @@ public class FonteService {
         
     }
 
-    //metodo para listar todos os gastos
+    /***
+     * lista todas as fontes
+     * @return retorna todas as fontes cadastradas
+     */
     public Iterable<Fonte> listarfontes(){
         return fonteRepository.findAll();
     }

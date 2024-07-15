@@ -14,12 +14,21 @@ public class GeralService {
     @Autowired 
     private GastoRepository gastosRepositorio;
 
-
+    /**
+     * apresenta o resto entre o valor de todas as receitas cadastradas e as despesas
+     * @return retorna o resto entre todos os valores das entradas e todos os valores dos gastos (soma das entradas - soma dos gastos)
+     */
     public double total(){
      double total = entradasrepositorio.somadasentradas() - gastosRepositorio.somaDosGastos();
      return total;
     }
 
+    /**
+     * apresenta o resto entre o valor de todas as receitas  e as despesas cadastradas no mês desejado
+     * @param mes mês que se deseja verificar
+     * @param ano ano do mês que se deseja verificar
+     * @return retorna o resto entre a soma dos valores das receitas no mes especificado e os gastos do mes especificado
+     */
     public double totalMensal(int mes, int ano){
         double entradas;
         double saidas;

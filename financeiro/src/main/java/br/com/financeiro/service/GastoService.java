@@ -44,7 +44,7 @@ public class GastoService {
     /*metodos para listar */
 
     /**
-     * metodo para listar todos os gastos
+     * lista todos os gastos
      * @return retorna todos os gastos registrados
      */
     public Iterable<Gasto> listargastos(){
@@ -52,7 +52,7 @@ public class GastoService {
     }
 
     /**
-     * metodo para listar todos os gastos registrados em uma fonte especifica
+     * lista todos os gastos da com o mesmo codigo da fonte fornecida
      * @param fonte codigofonte da fonte que se deseja obter os gastos
      * @return retorna todos os gastos que tem como codigofonte o numero fornecida
      */
@@ -61,7 +61,7 @@ public class GastoService {
     }
 
     /**
-     * metodo para listar todos os gastos registrados em uma fonte em um mês especifico
+     * lista todos os gastos registrados em uma fonte em um mês especifico
      * @param fonte codigofonte da fonte que se deseja obter os gastos cadastrados
      * @param mes numero do mês que se deseja obter os gastos cadastrados
      * @param ano ano que se deseja obter os gastos cadastrados
@@ -73,7 +73,7 @@ public class GastoService {
 
 
     /**
-     * Método para listar gastos por mês e ano
+     * lista todos os gastos no ano e mês informado
      * @param mes numero do mês que se deseja obter os gastos cadastrados
      * @param ano ano que se deseja obter os gastos cadastrados
      * @return retorna todos os gastos no ano e mês requisitados
@@ -83,7 +83,7 @@ public class GastoService {
     }
 
     /**
-     * metodo para listar todos os gastos sem fontes
+     * lista todos os gastos que não possuem fonte
      * @return retorna todos os gastos que tem codigoFonte igual a zero
      */
     public Iterable<Gasto>listarGastosSemFontes(){
@@ -95,7 +95,7 @@ public class GastoService {
     /*metodos para cadastrar */
 
     /**
-     * metodo para cadastrar ou alterar Gastos
+     * Cadastra ou altera um gasto
      * @param gasto gasto que se deseja cadastrar 
      * @param acao ação que sera exercida .:"cadastrar" ; "alterar"
      * @return retorna o status da requisição
@@ -127,7 +127,7 @@ public class GastoService {
     }
 
     /**
-     * metodo para cadastrar ou alterar gastos no credito
+     * Cadastra ou altera um gasto com cartão de credito(Gasto com fonte)
      * @param gasto gasto que se deseja cadastrar 
      * @param codigoFonte codigoFonte da fonte na qual se quer cadastrar o gasto
      * @param acao ação que sera exercida .:"cadastrar" ; "alterar"
@@ -203,7 +203,7 @@ public class GastoService {
     }
 
     /**
-     * metodo para verificar se há Gastos cadastrado na fonte em um mês especifico
+     * verifica se há Gastos cadastrado na fonte informada no mês requisitado
      * @param codigoFonte codigoFonte da fonte que se deseja verificar
      * @param mes mês que se deseja verificar
      * @param ano ano em que se deseja verificar
@@ -270,7 +270,7 @@ public class GastoService {
     }
     
     /**
-     * metodo para cadastrar ou alterar gastos parcelados
+     * cadastra ou altera um gasto parcelado
      * @param info informação sobre o gasto parcelado que se deseja cadastrar
      * @param acao ação que sera exercida .:"cadastrar" ; "alterar"
      * @return retorna o status da requisição
@@ -371,7 +371,7 @@ public class GastoService {
 
 
     /**
-     * metodo para cadastrar ou alterar gastos parcelados com fonte
+     * cadastra ou altera um gasto parcelados com fonte (Gasto parcelado no cartão credito)
      * @param info informação sobre o gasto parcelado que se deseja cadastrar
      * @param acao acao ação que sera exercida .:"cadastrar" ; "alterar"
      * @param fonte codigoFonte da fonte na qual se quer cadastrar os gastos
@@ -488,7 +488,8 @@ public class GastoService {
     /*metodos para remover */
 
     /**
-     * metodo para remover gastos
+     * caso seja um gasto avista  remove um gasto
+     * caso seja um gasto parecelado remove todas as parcelas
      * @param codigo codigo do gasto que se deseja remover
      * @return retorna o status da requisição
      */
@@ -532,7 +533,7 @@ public class GastoService {
 
 
     /**
-     * metodo para somar todos os gastos
+     * apresenta o soma de todos os valores de gastos registrados
      * @return retorna o valor total de todos os gastos cadastrados
      */
     public double somaDosGastos(){
@@ -541,7 +542,7 @@ public class GastoService {
 
 
     /**
-     * Método para obter a soma dos gastos por mês e ano
+     * apresenta a soma dos gastos por mês e ano
      * @param mes mês que se deseja obter a soma
      * @param ano ano que se deseja obter a soma
      * @return retorna o valor total de todos os gastos cadastrado no mês informado
@@ -551,7 +552,7 @@ public class GastoService {
     }
 
     /**
-     * Método para obter a soma de todos os gastos cadastrado na fonte e no mês informado
+     * apresenta a soma de todos os gastos cadastrado na fonte e no mês informado
      * @param id id da fonteMes desejado
      * @return retorna o valor dos total dos gastos cadastrados na fonte e mês informados
      */
