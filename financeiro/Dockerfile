@@ -3,7 +3,7 @@ FROM maven:3.9.6-amazoncorretto-17 as build
 WORKDIR /app
 
 COPY . .
-RUN mvn clean package -X -Dskiptest
+RUN mvn clean package -DskipTests
 
 FROM openjdk:17-ea-jdk-slim
 
